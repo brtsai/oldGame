@@ -30,12 +30,12 @@
 	{
         
         super.screenSize = [[CCDirector sharedDirector] winSize];
-        [self setHull: 100];
+        [self setHull: 1000];
         [self setType: @"Ship"];
         [super setHitpoints:hull];
         [self setAttackInterval:10];
 		//do stuff
-        [self setDamage:5];
+        [self setDamage:20];
 	}
 	return self;
 }

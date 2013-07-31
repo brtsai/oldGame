@@ -653,7 +653,7 @@ int repairChanceEqualizer;
             attackInterval=1;
         }
         //NSLog([ NSString stringWithFormat:@"%@%u",@"AttackInterval: ",attackInterval]);
-        currentEvent =[Pirate createPirateWithHealth:10+eventCycle*2 andAttack:5+(eventCycle*2/3) andAttackInterval:attackInterval andPlayer:ship withBounty: 3];
+        currentEvent =[Pirate createPirateWithHealth:100+eventCycle*20 andAttack:15+(eventCycle*5/3) andAttackInterval:attackInterval andPlayer:ship withBounty: 3];
         [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
         [self addChild: currentEvent z:1 tag:CurrentEntityTag];
     }
@@ -840,9 +840,9 @@ int repairChanceEqualizer;
     [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 2] setVisible:NO];
     [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 3] setVisible:NO];
     [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 4] setVisible:NO];
-    int x=arc4random()%50;
+    int x=arc4random()%40;
     if(eventCycle<25)x-=(25-eventCycle);
-    x-=5*repairChanceEqualizer;
+    x-=10*repairChanceEqualizer;
     if(eventCycle>100)
     {
         x+=5;
@@ -876,7 +876,7 @@ int repairChanceEqualizer;
     if(ship.attackInterval>1)
     {
         x=arc4random()%400;
-        if(eventCycle<25)x-=(51-eventCycle*2);
+        if(eventCycle<50)x-=(51-eventCycle*2);
         if(x<50)
         {
             [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 4] setVisible:YES];
@@ -902,6 +902,27 @@ int repairChanceEqualizer;
         [ship upgradeHull];
         [ship upgradeHull];
         [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
+        [ship upgradeHull];
     }
 }
 
@@ -910,6 +931,10 @@ int repairChanceEqualizer;
     if(currentPlayerCredits>4)
     {
         currentPlayerCredits-=5;
+        [ship upgradeWeapons];
+        [ship upgradeWeapons];
+        [ship upgradeWeapons];
+        [ship upgradeWeapons];
         [ship upgradeWeapons];
         [ship upgradeWeapons];
     }

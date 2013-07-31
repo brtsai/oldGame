@@ -10,6 +10,9 @@
 		A5155A5617A1DA0A00F0F409 /* spaceCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = A5155A5517A1DA0A00F0F409 /* spaceCoin.png */; };
 		A528ADB817A85FCE006238B4 /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A528ADB717A85FCE006238B4 /* HighScoresLayer.m */; };
 		A528ADBA17A8633B006238B4 /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A528ADB917A8633B006238B4 /* PauseLayer.m */; };
+		A53BC14417A9B1C600BCB942 /* spacePort.png in Resources */ = {isa = PBXBuildFile; fileRef = A53BC14317A9B1C600BCB942 /* spacePort.png */; };
+		A53BC14617A9BBCC00BCB942 /* pirateKing.png in Resources */ = {isa = PBXBuildFile; fileRef = A53BC14517A9BBCC00BCB942 /* pirateKing.png */; };
+		A53BC14817A9BC3E00BCB942 /* PirateKing.m in Sources */ = {isa = PBXBuildFile; fileRef = A53BC14717A9BC3E00BCB942 /* PirateKing.m */; };
 		A552882F179D017E00A2CDAA /* darkShip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882C179D017E00A2CDAA /* darkShip-hd.png */; };
 		A5528830179D017E00A2CDAA /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882D179D017E00A2CDAA /* planet.png */; };
 		A5528831179D017E00A2CDAA /* relic.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882E179D017E00A2CDAA /* relic.png */; };
@@ -55,6 +58,9 @@
 		A5155A5517A1DA0A00F0F409 /* spaceCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spaceCoin.png; path = Projectfiles/Resources/spaceCoin.png; sourceTree = "<group>"; };
 		A528ADB717A85FCE006238B4 /* HighScoresLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HighScoresLayer.m; path = Projectfiles/HighScoresLayer.m; sourceTree = "<group>"; };
 		A528ADB917A8633B006238B4 /* PauseLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PauseLayer.m; path = Projectfiles/PauseLayer.m; sourceTree = "<group>"; };
+		A53BC14317A9B1C600BCB942 /* spacePort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spacePort.png; path = Projectfiles/Resources/spacePort.png; sourceTree = "<group>"; };
+		A53BC14517A9BBCC00BCB942 /* pirateKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pirateKing.png; path = Projectfiles/Resources/pirateKing.png; sourceTree = "<group>"; };
+		A53BC14717A9BC3E00BCB942 /* PirateKing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PirateKing.m; path = Projectfiles/PirateKing.m; sourceTree = "<group>"; };
 		A552882C179D017E00A2CDAA /* darkShip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "darkShip-hd.png"; path = "Projectfiles/Resources/darkShip-hd.png"; sourceTree = "<group>"; };
 		A552882D179D017E00A2CDAA /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = planet.png; path = Projectfiles/Resources/planet.png; sourceTree = "<group>"; };
 		A552882E179D017E00A2CDAA /* relic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = relic.png; path = Projectfiles/Resources/relic.png; sourceTree = "<group>"; };
@@ -253,6 +259,9 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
+				A53BC14717A9BC3E00BCB942 /* PirateKing.m */,
+				A53BC14517A9BBCC00BCB942 /* pirateKing.png */,
+				A53BC14317A9B1C600BCB942 /* spacePort.png */,
 				A528ADB917A8633B006238B4 /* PauseLayer.m */,
 				A528ADB717A85FCE006238B4 /* HighScoresLayer.m */,
 				A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */,
@@ -418,6 +427,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53BC14617A9BBCC00BCB942 /* pirateKing.png in Resources */,
+				A53BC14417A9B1C600BCB942 /* spacePort.png in Resources */,
 				A5155A5617A1DA0A00F0F409 /* spaceCoin.png in Resources */,
 				A5BDF1D3179F2804001F9D29 /* Events.plist in Resources */,
 				A5528837179DAC9600A2CDAA /* darkShip.png in Resources */,
@@ -448,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53BC14817A9BC3E00BCB942 /* PirateKing.m in Sources */,
 				A528ADBA17A8633B006238B4 /* PauseLayer.m in Sources */,
 				A528ADB817A85FCE006238B4 /* HighScoresLayer.m in Sources */,
 				A5BDF1D5179F3587001F9D29 /* Interlude.m in Sources */,
