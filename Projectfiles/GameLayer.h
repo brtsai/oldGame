@@ -1,0 +1,48 @@
+/*
+ * Kobold2D™ --- http://www.kobold2d.org
+ *
+ * Copyright (c) 2010-2011 Steffen Itterheim, Andreas Loew 
+ * Released under MIT License in Germany (LICENSE-Kobold2D.txt).
+ */
+
+//  Updated by Andreas Loew on 20.06.11:
+//  * retina display
+//  * framerate independency
+//  * using TexturePacker http://www.texturepacker.com
+
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "Entity.h"
+
+
+//This assigns an integer value to an arbitrarily long list, where each has a value 1 greater than the last. So here TouchAvailableLabelTag = 3 and TouchEndedLabelTag = 4
+typedef enum
+{
+	TouchStartedLabelTag = 2,
+	TouchAvailableLabelTag,
+	TouchEndedLabelTag,
+	StarBackgroundTag,
+    CurrentEntityTag,
+    PlayerHealthTag,
+    PlayerCreditsTag,
+    PlayerCreditsSpriteTag,
+    PlayerAttackTag,
+    UpgradesMenuTag,
+    TextOnScreenTag
+} LabelTags;
+
+@interface GameLayer : CCLayer 
+{
+    CCSprite* Background;
+
+}
++(CGRect) screenRect;
++(GameLayer*) sharedGameLayer;
+-(void) bringUpUpgradesMenu;
+-(void) putAwayUpgradesMenu;
+-(id) initAsTutorial;
+-(id) initAsEndless;
+-(id) resume;
+
+@property int gameState;
+@end

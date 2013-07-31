@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A5155A5617A1DA0A00F0F409 /* spaceCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = A5155A5517A1DA0A00F0F409 /* spaceCoin.png */; };
+		A528ADB817A85FCE006238B4 /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A528ADB717A85FCE006238B4 /* HighScoresLayer.m */; };
+		A528ADBA17A8633B006238B4 /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A528ADB917A8633B006238B4 /* PauseLayer.m */; };
+		A552882F179D017E00A2CDAA /* darkShip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882C179D017E00A2CDAA /* darkShip-hd.png */; };
+		A5528830179D017E00A2CDAA /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882D179D017E00A2CDAA /* planet.png */; };
+		A5528831179D017E00A2CDAA /* relic.png in Resources */ = {isa = PBXBuildFile; fileRef = A552882E179D017E00A2CDAA /* relic.png */; };
+		A5528833179D018C00A2CDAA /* coins.png in Resources */ = {isa = PBXBuildFile; fileRef = A5528832179D018C00A2CDAA /* coins.png */; };
+		A5528835179DA44E00A2CDAA /* Pirate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5528834179DA44E00A2CDAA /* Pirate.m */; };
+		A5528837179DAC9600A2CDAA /* darkShip.png in Resources */ = {isa = PBXBuildFile; fileRef = A5528836179DAC9600A2CDAA /* darkShip.png */; };
+		A59D0BD11798F2BB0028708E /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = A59D0BD01798F2BB0028708E /* Ship.m */; };
+		A59D0BD71798F8E50028708E /* StarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A59D0BD61798F8E50028708E /* StarBackground.png */; };
+		A59D0BD91798FA7A0028708E /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A59D0BD81798FA7A0028708E /* GameOverLayer.m */; };
+		A5BDF1D1179F0202001F9D29 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BDF1D0179F0202001F9D29 /* Planet.m */; };
+		A5BDF1D3179F2804001F9D29 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5BDF1D2179F2804001F9D29 /* Events.plist */; };
+		A5BDF1D5179F3587001F9D29 /* Interlude.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BDF1D4179F3587001F9D29 /* Interlude.m */; };
+		AA6049AE15AE4B7C0043DFF9 /* GenericMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */; };
+		AA6049B015AE500B0043DFF9 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6049AF15AE500B0043DFF9 /* ship.png */; };
+		AA6049B215AE50130043DFF9 /* ship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6049B115AE50130043DFF9 /* ship-hd.png */; };
+		DC50120E140569D400BFD93A /* libcocos2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC50120D140569D400BFD93A /* libcocos2d-ios.a */; };
+		DC6459F5140550FE00DEDC42 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6459DF140550FE00DEDC42 /* Entity.m */; };
+		DC6459F6140550FE00DEDC42 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6459E1140550FE00DEDC42 /* GameLayer.m */; };
+		DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615013A969B600A7AC53 /* libbox2d-ios.a */; };
+		DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615113A969B600A7AC53 /* libchipmunk-ios.a */; };
+		DC65615E13A969B600A7AC53 /* libchipmunk-spacemanager-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615213A969B600A7AC53 /* libchipmunk-spacemanager-ios.a */; };
+		DC65616013A969B600A7AC53 /* libcocos2d-extensions-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615413A969B600A7AC53 /* libcocos2d-extensions-ios.a */; };
+		DC65616213A969B600A7AC53 /* libcocos3d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615613A969B600A7AC53 /* libcocos3d-ios.a */; };
+		DC65616313A969B600A7AC53 /* libcocosdenshion-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615713A969B600A7AC53 /* libcocosdenshion-ios.a */; };
+		DC65616413A969B600A7AC53 /* libkobold2d-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615813A969B600A7AC53 /* libkobold2d-ios.a */; };
+		DC65616513A969B600A7AC53 /* libobjectal-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615913A969B600A7AC53 /* libobjectal-ios.a */; };
+		DC65616613A969B600A7AC53 /* libsneakyinput-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615A13A969B600A7AC53 /* libsneakyinput-ios.a */; };
+		DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0F913A94ED5005BD75D /* Default.png */; };
+		DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FB13A94ED5005BD75D /* fps_images.png */; };
+		DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FD13A94ED5005BD75D /* Icon-72.png */; };
+		DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */; };
+		DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10113A94ED5005BD75D /* Icon-Small.png */; };
+		DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10313A94ED5005BD75D /* Icon-Small@2x.png */; };
+		DCC1A10613A94ED5005BD75D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10513A94ED5005BD75D /* Icon.png */; };
+		DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10713A94ED5005BD75D /* Icon@2x.png */; };
+		DCC1A10B13A94ED5005BD75D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10A13A94ED5005BD75D /* iTunesArtwork */; };
+		DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A38E13A94F1A005BD75D /* AppDelegate.m */; };
+		DCC1A3AD13A94F1A005BD75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A39113A94F1A005BD75D /* main.m */; };
+		DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A5155A5517A1DA0A00F0F409 /* spaceCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spaceCoin.png; path = Projectfiles/Resources/spaceCoin.png; sourceTree = "<group>"; };
+		A528ADB717A85FCE006238B4 /* HighScoresLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HighScoresLayer.m; path = Projectfiles/HighScoresLayer.m; sourceTree = "<group>"; };
+		A528ADB917A8633B006238B4 /* PauseLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PauseLayer.m; path = Projectfiles/PauseLayer.m; sourceTree = "<group>"; };
+		A552882C179D017E00A2CDAA /* darkShip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "darkShip-hd.png"; path = "Projectfiles/Resources/darkShip-hd.png"; sourceTree = "<group>"; };
+		A552882D179D017E00A2CDAA /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = planet.png; path = Projectfiles/Resources/planet.png; sourceTree = "<group>"; };
+		A552882E179D017E00A2CDAA /* relic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = relic.png; path = Projectfiles/Resources/relic.png; sourceTree = "<group>"; };
+		A5528832179D018C00A2CDAA /* coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coins.png; path = Projectfiles/Resources/coins.png; sourceTree = "<group>"; };
+		A5528834179DA44E00A2CDAA /* Pirate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Pirate.m; path = Projectfiles/Pirate.m; sourceTree = "<group>"; };
+		A5528836179DAC9600A2CDAA /* darkShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkShip.png; path = Projectfiles/Resources/darkShip.png; sourceTree = "<group>"; };
+		A55E868717A6F82500E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenu.m; path = Projectfiles/CustomCCMenu.m; sourceTree = "<group>"; };
+		A55E868A17A6F83200E3416F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A55E868B17A6F83200E3416F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A55E868C17A6F83200E3416F /* CustomCCMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCCMenu.h; sourceTree = "<group>"; };
+		A55E868D17A6F83200E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCCMenu.m; sourceTree = "<group>"; };
+		A55E868E17A6F83200E3416F /* CustomCCMenuItemLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCCMenuItemLabel.h; sourceTree = "<group>"; };
+		A55E868F17A6F83200E3416F /* CustomCCMenuItemLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCCMenuItemLabel.m; sourceTree = "<group>"; };
+		A55E869017A6F83200E3416F /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		A55E869117A6F83200E3416F /* Entity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		A55E869217A6F83200E3416F /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
+		A55E869317A6F83200E3416F /* GameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
+		A55E869417A6F83200E3416F /* GameOverLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		A55E869517A6F83200E3416F /* GameOverLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		A55E869617A6F83200E3416F /* GenericMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericMenuLayer.h; sourceTree = "<group>"; };
+		A55E869717A6F83200E3416F /* GenericMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericMenuLayer.m; sourceTree = "<group>"; };
+		A55E869817A6F83200E3416F /* Interlude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interlude.h; sourceTree = "<group>"; };
+		A55E869917A6F83200E3416F /* Interlude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Interlude.m; sourceTree = "<group>"; };
+		A55E869A17A6F83200E3416F /* LevelOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelOne.h; sourceTree = "<group>"; };
+		A55E869B17A6F83200E3416F /* LevelOne.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelOne.m; sourceTree = "<group>"; };
+		A55E869C17A6F83200E3416F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A55E869D17A6F83200E3416F /* Pirate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pirate.h; sourceTree = "<group>"; };
+		A55E869E17A6F83200E3416F /* Pirate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pirate.m; sourceTree = "<group>"; };
+		A55E869F17A6F83200E3416F /* Planet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
+		A55E86A017A6F83200E3416F /* Planet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
+		A55E86A117A6F83200E3416F /* Prefix-iOS.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Prefix-iOS.pch"; sourceTree = "<group>"; };
+		A55E86A217A6F83200E3416F /* Prefix-Mac.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Prefix-Mac.pch"; sourceTree = "<group>"; };
+		A55E86A417A6F83200E3416F /* coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coins.png; sourceTree = "<group>"; };
+		A55E86A517A6F83200E3416F /* config.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.lua; sourceTree = "<group>"; };
+		A55E86A617A6F83200E3416F /* darkShip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkShip-hd.png"; sourceTree = "<group>"; };
+		A55E86A717A6F83200E3416F /* darkShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkShip.png; sourceTree = "<group>"; };
+		A55E86A817A6F83200E3416F /* Events.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
+		A55E86A917A6F83200E3416F /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
+		A55E86AA17A6F83200E3416F /* relic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relic.png; sourceTree = "<group>"; };
+		A55E86AB17A6F83200E3416F /* ship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ship-hd.png"; sourceTree = "<group>"; };
+		A55E86AC17A6F83200E3416F /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		A55E86AD17A6F83200E3416F /* spaceCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceCoin.png; sourceTree = "<group>"; };
+		A55E86AE17A6F83200E3416F /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarBackground.png; sourceTree = "<group>"; };
+		A55E86AF17A6F83200E3416F /* ScramblerBoss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScramblerBoss.h; sourceTree = "<group>"; };
+		A55E86B017A6F83200E3416F /* ScramblerBoss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScramblerBoss.m; sourceTree = "<group>"; };
+		A55E86B117A6F83200E3416F /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		A55E86B217A6F83200E3416F /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		A55E86B317A6FAB600E3416F /* CustomCCMenuItemLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenuItemLabel.m; path = Projectfiles/CustomCCMenuItemLabel.m; sourceTree = "<group>"; };
+		A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenu.m; path = Projectfiles/CustomCCMenu.m; sourceTree = "<group>"; };
+		A59D0BD01798F2BB0028708E /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Ship.m; path = Projectfiles/Ship.m; sourceTree = "<group>"; };
+		A59D0BD41798F8950028708E /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarBackground.png; path = Projectfiles/Resources/StarBackground.png; sourceTree = "<group>"; };
+		A59D0BD61798F8E50028708E /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarBackground.png; path = Projectfiles/Resources/StarBackground.png; sourceTree = "<group>"; };
+		A59D0BD81798FA7A0028708E /* GameOverLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameOverLayer.m; path = Projectfiles/GameOverLayer.m; sourceTree = "<group>"; };
+		A5BDF1D0179F0202001F9D29 /* Planet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Planet.m; path = Projectfiles/Planet.m; sourceTree = "<group>"; };
+		A5BDF1D2179F2804001F9D29 /* Events.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Events.plist; path = Projectfiles/Resources/Events.plist; sourceTree = "<group>"; };
+		A5BDF1D4179F3587001F9D29 /* Interlude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Interlude.m; path = Projectfiles/Interlude.m; sourceTree = "<group>"; };
+		AA6049AC15AE4B7B0043DFF9 /* GenericMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericMenuLayer.h; sourceTree = "<group>"; };
+		AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericMenuLayer.m; sourceTree = "<group>"; };
+		AA6049AF15AE500B0043DFF9 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		AA6049B115AE50130043DFF9 /* ship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ship-hd.png"; sourceTree = "<group>"; };
+		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
+		DC50120D140569D400BFD93A /* libcocos2d-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libcocos2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6459DE140550FE00DEDC42 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		DC6459DF140550FE00DEDC42 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		DC6459E0140550FE00DEDC42 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
+		DC6459E1140550FE00DEDC42 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
+		DC65615013A969B600A7AC53 /* libbox2d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615113A969B600A7AC53 /* libchipmunk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615213A969B600A7AC53 /* libchipmunk-spacemanager-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-spacemanager-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615413A969B600A7AC53 /* libcocos2d-extensions-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocos2d-extensions-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615613A969B600A7AC53 /* libcocos3d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocos3d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615713A969B600A7AC53 /* libcocosdenshion-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocosdenshion-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615813A969B600A7AC53 /* libkobold2d-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libkobold2d-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615913A969B600A7AC53 /* libobjectal-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libobjectal-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC65615A13A969B600A7AC53 /* libsneakyinput-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libsneakyinput-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-Mac.xcconfig"; sourceTree = "<group>"; };
+		DC9C33E813B5024400931BF2 /* BuildSettings-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Mac.xcconfig"; sourceTree = "<group>"; };
+		DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-Mac.xcconfig"; sourceTree = "<group>"; };
+		DCC1A0E313A94ED5005BD75D /* Space Sim-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Sim-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC1A0F913A94ED5005BD75D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		DCC1A0FB13A94ED5005BD75D /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
+		DCC1A0FD13A94ED5005BD75D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
+		DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
+		DCC1A10113A94ED5005BD75D /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/Icon-Small.png"; sourceTree = "<group>"; };
+		DCC1A10313A94ED5005BD75D /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		DCC1A10513A94ED5005BD75D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		DCC1A10713A94ED5005BD75D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
+		DCC1A10913A94ED5005BD75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		DCC1A10A13A94ED5005BD75D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
+		DCC1A38D13A94F1A005BD75D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DCC1A38E13A94F1A005BD75D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DCC1A39113A94F1A005BD75D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefix-iOS.pch"; sourceTree = "<group>"; };
+		DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Prefix-Mac.pch"; sourceTree = "<group>"; };
+		DCC1A39513A94F1A005BD75D /* config.lua */ = {isa = PBXFileReference; explicitFileType = sourcecode.applescript; fileEncoding = 4; path = config.lua; sourceTree = "<group>"; };
+		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
+		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCC1A0E013A94ED5005BD75D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC50120E140569D400BFD93A /* libcocos2d-ios.a in Frameworks */,
+				DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */,
+				DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */,
+				DC65615E13A969B600A7AC53 /* libchipmunk-spacemanager-ios.a in Frameworks */,
+				DC65616013A969B600A7AC53 /* libcocos2d-extensions-ios.a in Frameworks */,
+				DC65616213A969B600A7AC53 /* libcocos3d-ios.a in Frameworks */,
+				DC65616313A969B600A7AC53 /* libcocosdenshion-ios.a in Frameworks */,
+				DC65616413A969B600A7AC53 /* libkobold2d-ios.a in Frameworks */,
+				DC65616513A969B600A7AC53 /* libobjectal-ios.a in Frameworks */,
+				DC65616613A969B600A7AC53 /* libsneakyinput-ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A55E868917A6F83200E3416F /* Projectfiles */ = {
+			isa = PBXGroup;
+			children = (
+				A55E868A17A6F83200E3416F /* AppDelegate.h */,
+				A55E868B17A6F83200E3416F /* AppDelegate.m */,
+				A55E868C17A6F83200E3416F /* CustomCCMenu.h */,
+				A55E868D17A6F83200E3416F /* CustomCCMenu.m */,
+				A55E868E17A6F83200E3416F /* CustomCCMenuItemLabel.h */,
+				A55E868F17A6F83200E3416F /* CustomCCMenuItemLabel.m */,
+				A55E869017A6F83200E3416F /* Entity.h */,
+				A55E869117A6F83200E3416F /* Entity.m */,
+				A55E869217A6F83200E3416F /* GameLayer.h */,
+				A55E869317A6F83200E3416F /* GameLayer.m */,
+				A55E869417A6F83200E3416F /* GameOverLayer.h */,
+				A55E869517A6F83200E3416F /* GameOverLayer.m */,
+				A55E869617A6F83200E3416F /* GenericMenuLayer.h */,
+				A55E869717A6F83200E3416F /* GenericMenuLayer.m */,
+				A55E869817A6F83200E3416F /* Interlude.h */,
+				A55E869917A6F83200E3416F /* Interlude.m */,
+				A55E869A17A6F83200E3416F /* LevelOne.h */,
+				A55E869B17A6F83200E3416F /* LevelOne.m */,
+				A55E869C17A6F83200E3416F /* main.m */,
+				A55E869D17A6F83200E3416F /* Pirate.h */,
+				A55E869E17A6F83200E3416F /* Pirate.m */,
+				A55E869F17A6F83200E3416F /* Planet.h */,
+				A55E86A017A6F83200E3416F /* Planet.m */,
+				A55E86A117A6F83200E3416F /* Prefix-iOS.pch */,
+				A55E86A217A6F83200E3416F /* Prefix-Mac.pch */,
+				A55E86A317A6F83200E3416F /* Resources */,
+				A55E86AF17A6F83200E3416F /* ScramblerBoss.h */,
+				A55E86B017A6F83200E3416F /* ScramblerBoss.m */,
+				A55E86B117A6F83200E3416F /* Ship.h */,
+				A55E86B217A6F83200E3416F /* Ship.m */,
+			);
+			path = Projectfiles;
+			sourceTree = "<group>";
+		};
+		A55E86A317A6F83200E3416F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A55E86A417A6F83200E3416F /* coins.png */,
+				A55E86A517A6F83200E3416F /* config.lua */,
+				A55E86A617A6F83200E3416F /* darkShip-hd.png */,
+				A55E86A717A6F83200E3416F /* darkShip.png */,
+				A55E86A817A6F83200E3416F /* Events.plist */,
+				A55E86A917A6F83200E3416F /* planet.png */,
+				A55E86AA17A6F83200E3416F /* relic.png */,
+				A55E86AB17A6F83200E3416F /* ship-hd.png */,
+				A55E86AC17A6F83200E3416F /* ship.png */,
+				A55E86AD17A6F83200E3416F /* spaceCoin.png */,
+				A55E86AE17A6F83200E3416F /* StarBackground.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DC5011FF140555E700BFD93A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				DC6459DE140550FE00DEDC42 /* Entity.h */,
+				DC6459DF140550FE00DEDC42 /* Entity.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		DC501201140555F400BFD93A /* Scene & Layers */ = {
+			isa = PBXGroup;
+			children = (
+				DC6459E0140550FE00DEDC42 /* GameLayer.h */,
+				DC6459E1140550FE00DEDC42 /* GameLayer.m */,
+				AA6049AC15AE4B7B0043DFF9 /* GenericMenuLayer.h */,
+				AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */,
+			);
+			name = "Scene & Layers";
+			sourceTree = "<group>";
+		};
+		DCC1A0D613A94EC0005BD75D = {
+			isa = PBXGroup;
+			children = (
+				A528ADB917A8633B006238B4 /* PauseLayer.m */,
+				A528ADB717A85FCE006238B4 /* HighScoresLayer.m */,
+				A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */,
+				A55E86B317A6FAB600E3416F /* CustomCCMenuItemLabel.m */,
+				A55E868917A6F83200E3416F /* Projectfiles */,
+				A55E868717A6F82500E3416F /* CustomCCMenu.m */,
+				A5155A5517A1DA0A00F0F409 /* spaceCoin.png */,
+				A5BDF1D4179F3587001F9D29 /* Interlude.m */,
+				A5BDF1D2179F2804001F9D29 /* Events.plist */,
+				A5BDF1D0179F0202001F9D29 /* Planet.m */,
+				A5528836179DAC9600A2CDAA /* darkShip.png */,
+				A5528834179DA44E00A2CDAA /* Pirate.m */,
+				A5528832179D018C00A2CDAA /* coins.png */,
+				A552882C179D017E00A2CDAA /* darkShip-hd.png */,
+				A552882D179D017E00A2CDAA /* planet.png */,
+				A552882E179D017E00A2CDAA /* relic.png */,
+				A59D0BD81798FA7A0028708E /* GameOverLayer.m */,
+				A59D0BD61798F8E50028708E /* StarBackground.png */,
+				A59D0BD41798F8950028708E /* StarBackground.png */,
+				A59D0BD01798F2BB0028708E /* Ship.m */,
+				DCC1A38C13A94F1A005BD75D /* Projectfiles */,
+				DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */,
+				DCFA90ED13B4F6A0009DD35A /* BuildSettings */,
+				DCC1A0E613A94ED5005BD75D /* Frameworks */,
+				DCC1A0E413A94ED5005BD75D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCC1A0E413A94ED5005BD75D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCC1A0E313A94ED5005BD75D /* Space Sim-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCC1A0E613A94ED5005BD75D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DCC1A0F813A94ED5005BD75D /* Resources */,
+			);
+			path = "Projectfiles-iOS";
+			sourceTree = "<group>";
+		};
+		DCC1A0F813A94ED5005BD75D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DCC1A0F913A94ED5005BD75D /* Default.png */,
+				DCC1A0FB13A94ED5005BD75D /* fps_images.png */,
+				DCC1A0FD13A94ED5005BD75D /* Icon-72.png */,
+				DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */,
+				DCC1A10113A94ED5005BD75D /* Icon-Small.png */,
+				DCC1A10313A94ED5005BD75D /* Icon-Small@2x.png */,
+				DCC1A10513A94ED5005BD75D /* Icon.png */,
+				DCC1A10713A94ED5005BD75D /* Icon@2x.png */,
+				DCC1A10913A94ED5005BD75D /* Info.plist */,
+				DCC1A10A13A94ED5005BD75D /* iTunesArtwork */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
+			isa = PBXGroup;
+			children = (
+				DC501201140555F400BFD93A /* Scene & Layers */,
+				DC5011FF140555E700BFD93A /* Entities */,
+				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
+				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
+				DCC1A39413A94F1A005BD75D /* Resources */,
+				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
+			);
+			path = Projectfiles;
+			sourceTree = "<group>";
+		};
+		DCC1A39413A94F1A005BD75D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA6049AF15AE500B0043DFF9 /* ship.png */,
+				AA6049B115AE50130043DFF9 /* ship-hd.png */,
+				DCC1A39513A94F1A005BD75D /* config.lua */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DCC1A3CF13A94F2C005BD75D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCC1A39113A94F1A005BD75D /* main.m */,
+				DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */,
+				DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCFA90ED13B4F6A0009DD35A /* BuildSettings */ = {
+			isa = PBXGroup;
+			children = (
+				DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */,
+				DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */,
+				DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */,
+				DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */,
+				DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */,
+				DC9C33E813B5024400931BF2 /* BuildSettings-Mac.xcconfig */,
+			);
+			path = BuildSettings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCC1A0E213A94ED5005BD75D /* Space Sim-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "Space Sim-iOS" */;
+			buildPhases = (
+				DCC1A0DF13A94ED5005BD75D /* Sources */,
+				DCC1A0E013A94ED5005BD75D /* Frameworks */,
+				DCC1A0E113A94ED5005BD75D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Space Sim-iOS";
+			productName = "Hello-World-iOS";
+			productReference = DCC1A0E313A94ED5005BD75D /* Space Sim-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCC1A0D813A94EC0005BD75D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "Space Sim" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = DCC1A0D613A94EC0005BD75D;
+			productRefGroup = DCC1A0E413A94ED5005BD75D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCC1A0E213A94ED5005BD75D /* Space Sim-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCC1A0E113A94ED5005BD75D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5155A5617A1DA0A00F0F409 /* spaceCoin.png in Resources */,
+				A5BDF1D3179F2804001F9D29 /* Events.plist in Resources */,
+				A5528837179DAC9600A2CDAA /* darkShip.png in Resources */,
+				A5528833179D018C00A2CDAA /* coins.png in Resources */,
+				A552882F179D017E00A2CDAA /* darkShip-hd.png in Resources */,
+				A5528830179D017E00A2CDAA /* planet.png in Resources */,
+				A5528831179D017E00A2CDAA /* relic.png in Resources */,
+				A59D0BD71798F8E50028708E /* StarBackground.png in Resources */,
+				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
+				DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */,
+				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
+				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
+				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
+				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
+				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
+				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
+				DCC1A10B13A94ED5005BD75D /* iTunesArtwork in Resources */,
+				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				AA6049B015AE500B0043DFF9 /* ship.png in Resources */,
+				AA6049B215AE50130043DFF9 /* ship-hd.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCC1A0DF13A94ED5005BD75D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A528ADBA17A8633B006238B4 /* PauseLayer.m in Sources */,
+				A528ADB817A85FCE006238B4 /* HighScoresLayer.m in Sources */,
+				A5BDF1D5179F3587001F9D29 /* Interlude.m in Sources */,
+				A5BDF1D1179F0202001F9D29 /* Planet.m in Sources */,
+				A5528835179DA44E00A2CDAA /* Pirate.m in Sources */,
+				A59D0BD91798FA7A0028708E /* GameOverLayer.m in Sources */,
+				A59D0BD11798F2BB0028708E /* Ship.m in Sources */,
+				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
+				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				DC6459F5140550FE00DEDC42 /* Entity.m in Sources */,
+				DC6459F6140550FE00DEDC42 /* GameLayer.m in Sources */,
+				AA6049AE15AE4B7C0043DFF9 /* GenericMenuLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DCC1A0DD13A94EC0005BD75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		DCC1A0DE13A94EC0005BD75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		DCC1A25413A94ED7005BD75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
+				);
+				PRODUCT_NAME = "Space Sim-iOS";
+			};
+			name = Debug;
+		};
+		DCC1A25513A94ED7005BD75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
+				);
+				PRODUCT_NAME = "Space Sim-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "Space Sim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC1A0DD13A94EC0005BD75D /* Debug */,
+				DCC1A0DE13A94EC0005BD75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "Space Sim-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC1A25413A94ED7005BD75D /* Debug */,
+				DCC1A25513A94ED7005BD75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCC1A0D813A94EC0005BD75D /* Project object */;
+}
