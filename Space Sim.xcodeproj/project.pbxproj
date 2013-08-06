@@ -19,6 +19,9 @@
 		A5528833179D018C00A2CDAA /* coins.png in Resources */ = {isa = PBXBuildFile; fileRef = A5528832179D018C00A2CDAA /* coins.png */; };
 		A5528835179DA44E00A2CDAA /* Pirate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5528834179DA44E00A2CDAA /* Pirate.m */; };
 		A5528837179DAC9600A2CDAA /* darkShip.png in Resources */ = {isa = PBXBuildFile; fileRef = A5528836179DAC9600A2CDAA /* darkShip.png */; };
+		A5864A2317B02048005AAEBF /* explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5864A2117B02048005AAEBF /* explosion.plist */; };
+		A5864A2417B02048005AAEBF /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5864A2217B02048005AAEBF /* explosion.png */; };
+		A5864A2817B06060005AAEBF /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = A5864A2717B06060005AAEBF /* SpacePort.m */; };
 		A59D0BD11798F2BB0028708E /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = A59D0BD01798F2BB0028708E /* Ship.m */; };
 		A59D0BD71798F8E50028708E /* StarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A59D0BD61798F8E50028708E /* StarBackground.png */; };
 		A59D0BD91798FA7A0028708E /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A59D0BD81798FA7A0028708E /* GameOverLayer.m */; };
@@ -110,6 +113,14 @@
 		A55E86B217A6F83200E3416F /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		A55E86B317A6FAB600E3416F /* CustomCCMenuItemLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenuItemLabel.m; path = Projectfiles/CustomCCMenuItemLabel.m; sourceTree = "<group>"; };
 		A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenu.m; path = Projectfiles/CustomCCMenu.m; sourceTree = "<group>"; };
+		A5864A1917B01A3D005AAEBF /* Exp_type_C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Exp_type_C.png; path = Projectfiles/Resources/Exp_type_C.png; sourceTree = "<group>"; };
+		A5864A1A17B01A3D005AAEBF /* explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png"; path = "Projectfiles/Resources/explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png"; sourceTree = "<group>"; };
+		A5864A1D17B01B64005AAEBF /* Explosion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Explosion.plist; path = Projectfiles/Resources/Explosion.plist; sourceTree = "<group>"; };
+		A5864A1E17B01B64005AAEBF /* Explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explosion.png; path = Projectfiles/Resources/Explosion.png; sourceTree = "<group>"; };
+		A5864A2117B02048005AAEBF /* explosion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = explosion.plist; path = Projectfiles/Resources/explosion.plist; sourceTree = "<group>"; };
+		A5864A2217B02048005AAEBF /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = Projectfiles/Resources/explosion.png; sourceTree = "<group>"; };
+		A5864A2517B025DB005AAEBF /* Explosion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Explosion.m; path = Projectfiles/Explosion.m; sourceTree = "<group>"; };
+		A5864A2717B06060005AAEBF /* SpacePort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpacePort.m; path = Projectfiles/SpacePort.m; sourceTree = "<group>"; };
 		A59D0BD01798F2BB0028708E /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Ship.m; path = Projectfiles/Ship.m; sourceTree = "<group>"; };
 		A59D0BD41798F8950028708E /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarBackground.png; path = Projectfiles/Resources/StarBackground.png; sourceTree = "<group>"; };
 		A59D0BD61798F8E50028708E /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarBackground.png; path = Projectfiles/Resources/StarBackground.png; sourceTree = "<group>"; };
@@ -259,6 +270,14 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
+				A5864A2717B06060005AAEBF /* SpacePort.m */,
+				A5864A2517B025DB005AAEBF /* Explosion.m */,
+				A5864A2117B02048005AAEBF /* explosion.plist */,
+				A5864A2217B02048005AAEBF /* explosion.png */,
+				A5864A1D17B01B64005AAEBF /* Explosion.plist */,
+				A5864A1E17B01B64005AAEBF /* Explosion.png */,
+				A5864A1917B01A3D005AAEBF /* Exp_type_C.png */,
+				A5864A1A17B01A3D005AAEBF /* explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png */,
 				A53BC14717A9BC3E00BCB942 /* PirateKing.m */,
 				A53BC14517A9BBCC00BCB942 /* pirateKing.png */,
 				A53BC14317A9B1C600BCB942 /* spacePort.png */,
@@ -427,6 +446,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5864A2317B02048005AAEBF /* explosion.plist in Resources */,
+				A5864A2417B02048005AAEBF /* explosion.png in Resources */,
 				A53BC14617A9BBCC00BCB942 /* pirateKing.png in Resources */,
 				A53BC14417A9B1C600BCB942 /* spacePort.png in Resources */,
 				A5155A5617A1DA0A00F0F409 /* spaceCoin.png in Resources */,
@@ -459,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5864A2817B06060005AAEBF /* SpacePort.m in Sources */,
 				A53BC14817A9BC3E00BCB942 /* PirateKing.m in Sources */,
 				A528ADBA17A8633B006238B4 /* PauseLayer.m in Sources */,
 				A528ADB817A85FCE006238B4 /* HighScoresLayer.m in Sources */,

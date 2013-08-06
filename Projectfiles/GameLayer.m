@@ -1,6 +1,9 @@
 /*
  * Kobold2D™ --- http://www.kobold2d.org
  *
+ 
+ 
+ 
  * Copyright (c) 2010-2011 Steffen Itterheim, Andreas Loew 
  * Released under MIT License in Germany (LICENSE-Kobold2D.txt).
  */
@@ -15,12 +18,14 @@
 #import "GenericMenuLayer.h"
 #import "Ship.h"
 #import "Pirate.h"
+#import "PirateKing.h"
 #import "Planet.h"
 #import "Interlude.h"
 #import "GameOverLayer.h"
 #import "PauseLayer.h"
+#import "SpacePort.h"
 @implementation GameLayer
-
+bool shake_once;
 static CGRect screenRect;
 NSString* healthToDisplay;
 NSString* attackPowerToDisplay;
@@ -28,7 +33,10 @@ static GameLayer* instanceOfGameLayer;
 CGSize screenSize;
 Ship* ship;
 CCMenu* upgradesMenu;
+CCMenu* superWeaponsMenu;
+CCLabelTTF* superWeaponsMenuTitle;
 CCMenu* pauseButton;
+CCAnimation *taunting;
 //These labels will be used to check if touch input is working
 //**COMMENT THIS OUT WHEN YOU START WORK ON YOUR OWN GAME
 //CCLabelTTF* verifyTouchStart;
@@ -38,8 +46,10 @@ CCLabelTTF* health;
 CCLabelTTF* attackPower;
 CCSprite* background;
 CCSprite* playerCreditsSprite;
+CCSprite* sprite;
 CCLabelTTF* playerCreditsLabel;
 int currentPlayerCredits;
+int currentSuperWeapon;
 //**
 int backgroundCount;
 bool moving;
@@ -50,6 +60,7 @@ int eventCycle;
 int enemyCount;
 int gameState;
 int repairChanceEqualizer;
+@synthesize superWeaponInUse;
 //this allows other classes in your project to query the GameLayer for the screenRect
 +(CGRect) screenRect
 {
@@ -96,8 +107,33 @@ int repairChanceEqualizer;
 {
     [self scheduleUpdate];
     [self reloadMenus];
+    [self reloadSprites];
     return self;
 }
+-(void) reloadSprites
+{
+    NSMutableArray* arrayE = [[NSMutableArray alloc] init];
+    while([self getChildByTag:ExplosionTag]!=nil)
+    {
+        NSLog(@"Explosion found");
+        CCSprite* explosion = (CCSprite*)[self getChildByTag:ExplosionTag];
+        [arrayE addObject:explosion];
+        [self removeChildByTag:ExplosionTag];
+    }
+    NSLog([NSString stringWithFormat:@"%@%u",@"Elements in Array: ",[arrayE count]]);
+    [self removeExplosions];
+    while([arrayE count]>0)
+    {
+        NSLog(@"Explosion Reloaded");
+        CCSprite* spriteE = (CCSprite*)[arrayE objectAtIndex: [arrayE count]-1];
+        [spriteE runAction:taunt];
+        
+        [self addChild:spriteE z:1 tag: ExplosionTag];
+        
+        [arrayE removeObjectAtIndex: [arrayE count]-1];
+    }
+}
+
 
 -(void) reloadMenus
 {
@@ -143,17 +179,86 @@ int repairChanceEqualizer;
     
     [upgradesMenu alignItemsVertically];
     [upgradesMenu setPosition:ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+    [self removeChildByTag:UpgradesMenuTag];
     [self addChild: upgradesMenu z:1 tag: UpgradesMenuTag];
 
     
     //[[self getChildByTag:UpgradesMenuTag] setVisible: NO];
+    
+    [self removeChildByTag: SuperWeaponsMenuTag];
+    
+    CCLabelTTF* megaLaserLabel = [CCLabelTTF labelWithString:@"Mega Laser" fontName: @"arial" fontSize: 25.0f];
+    CCLabelTTF* emergencyRepairLabel = [CCLabelTTF labelWithString: @"Emergency Repair" fontName: @"arial" fontSize:25.0f];
+    CCLabelTTF* pointDefenseLabel = [CCLabelTTF labelWithString: @"Point Defenses" fontName: @"arial" fontSize:25.0f];
+    CCLabelTTF* reflectorLabel = [CCLabelTTF labelWithString: @"Reflector Shields" fontName: @"arial" fontSize: 25.0f];
+    CCMenuItemLabel *megaLaserMenuItem = [CCMenuItemLabel itemWithLabel: megaLaserLabel target:self selector: @selector(chooseMegaLaser)];
+    megaLaserMenuItem.tag=1;
+    CCMenuItemLabel *emergencyRepairMenuItem = [CCMenuItemLabel itemWithLabel: emergencyRepairLabel target: self selector: @selector(chooseEmergencyRepair)];
+    emergencyRepairMenuItem.tag=2;
+    CCMenuItemLabel * pointDefenseMenuItem = [CCMenuItemLabel itemWithLabel: pointDefenseLabel target: self selector: @selector(choosePointDefense)];
+    pointDefenseMenuItem.tag=3;
+    CCMenuItemLabel* reflectorMenuItem = [CCMenuItemLabel itemWithLabel: reflectorLabel target: self selector: @selector(chooseReflector)];
+    reflectorMenuItem.tag=4;
+    superWeaponsMenu= [CCMenu menuWithItems: megaLaserMenuItem, emergencyRepairMenuItem, pointDefenseMenuItem, reflectorMenuItem,nil];
+    [superWeaponsMenu alignItemsVertically];
+    [superWeaponsMenu setPosition: ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+    [self addChild: superWeaponsMenu z:1 tag:SuperWeaponsMenuTag];
 
+    
+    
+}
+
+
+-(void) chooseMegaLaser
+{
+    [(SpacePort*)[self getChildByTag: CurrentEntityTag] die];
+    currentSuperWeapon=1;
+    [self putAwaySuperWeaponsMenu];
+    
+}
+
+-(void) choosePointDefense
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+    currentSuperWeapon=3;
+    [self putAwaySuperWeaponsMenu];
+
+}
+
+-(void) chooseEmergencyRepair
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+
+    currentSuperWeapon=2;
+    [self putAwaySuperWeaponsMenu];
+
+}
+
+-(void) chooseReflector
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+
+    currentSuperWeapon=4;
+    [self putAwaySuperWeaponsMenu];
+
+}
+
+-(void) usePowerUp
+{
+    superWeaponInUse = currentSuperWeapon;
+    currentSuperWeapon=0;
+    if(superWeaponInUse==2)
+    {
+        [ship repair];
+        superWeaponInUse=0;
+    }
 }
 
 -(id) init
 {
 	if ((self = [super init]))
 	{
+        //currentSuperWeapon=1;
         repairChanceEqualizer=0;
         currentEvent=nil;
         gameState=1;
@@ -163,7 +268,11 @@ int repairChanceEqualizer;
         //get the rectangle that describes the edges of the screen
         screenSize = [[CCDirector sharedDirector] winSize];
 		screenRect = CGRectMake(0, 0, screenSize.width, screenSize.height);
-		
+		shake_once = NO;
+        self.accelerometerEnabled = YES;
+        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+        [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
+
         //Loads the background image.
         background = [CCSprite spriteWithFile:@"StarBackground.png"];
         [background setAnchorPoint:ccp(0,0)];
@@ -179,7 +288,7 @@ int repairChanceEqualizer;
         currentPlayerCredits = 0;
         NSString* currentPlayerCreditsString = [NSString stringWithFormat:@"%u",currentPlayerCredits];
         playerCreditsLabel = [CCLabelTTF labelWithString:currentPlayerCreditsString fontName:@"arial" fontSize:20.0f];
-        playerCreditsLabel.position=ccp(screenSize.width/4, screenSize.height*8/10);
+        playerCreditsLabel.position=ccp(screenSize.width*15/64, screenSize.height*8/10);
         [self addChild: playerCreditsLabel z:1 tag:PlayerCreditsTag];
         
         //Loads the upgrades menu
@@ -204,6 +313,40 @@ int repairChanceEqualizer;
         [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 3] setVisible:NO];
         [[[self getChildByTag:UpgradesMenuTag] getChildByTag: 4] setVisible:NO];
         [[self getChildByTag:UpgradesMenuTag] setVisible: NO];
+        //Loads the Super Weapons Menu
+        CCLabelTTF* megaLaserLabel = [CCLabelTTF labelWithString:@"Mega Laser" fontName: @"arial" fontSize: 25.0f];
+        CCLabelTTF* emergencyRepairLabel = [CCLabelTTF labelWithString: @"Emergency Repair" fontName: @"arial" fontSize:25.0f];
+        CCLabelTTF* pointDefenseLabel = [CCLabelTTF labelWithString: @"Point Defenses" fontName: @"arial" fontSize:25.0f];
+        CCLabelTTF* reflectorLabel = [CCLabelTTF labelWithString: @"Reflector Shields" fontName: @"arial" fontSize: 25.0f];
+        CCMenuItemLabel *megaLaserMenuItem = [CCMenuItemLabel itemWithLabel: megaLaserLabel target:self selector: @selector(chooseMegaLaser)];
+        megaLaserMenuItem.tag=1;
+        CCMenuItemLabel *emergencyRepairMenuItem = [CCMenuItemLabel itemWithLabel: emergencyRepairLabel target: self selector: @selector(chooseEmergencyRepair)];
+        emergencyRepairMenuItem.tag=2;
+        CCMenuItemLabel * pointDefenseMenuItem = [CCMenuItemLabel itemWithLabel: pointDefenseLabel target: self selector: @selector(choosePointDefense)];
+        pointDefenseMenuItem.tag=3;
+        CCMenuItemLabel* reflectorMenuItem = [CCMenuItemLabel itemWithLabel: reflectorLabel target: self selector: @selector(chooseReflector)];
+        reflectorMenuItem.tag=4;
+        superWeaponsMenu= [CCMenu menuWithItems: megaLaserMenuItem, emergencyRepairMenuItem, pointDefenseMenuItem, reflectorMenuItem,nil];
+        [superWeaponsMenu alignItemsVertically];
+        [superWeaponsMenu setPosition: ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+        [self addChild: superWeaponsMenu z:1 tag:SuperWeaponsMenuTag];
+        
+        superWeaponsMenuTitle = [CCLabelTTF labelWithString:@"Advanced Tech" fontName: @"arial" fontSize: 30.0f];
+        
+        [superWeaponsMenuTitle setPosition: ccp(screenSize.width*3/4-8, screenSize.height*3/4)];
+        [self addChild: superWeaponsMenuTitle z:1 tag: SuperWeaponsMenuTitleTag];
+        [[self getChildByTag: SuperWeaponsMenuTitleTag] setVisible:NO];
+        /*
+        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 1] setVisible: NO];
+        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 2] setVisible: NO];
+
+        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 3] setVisible: NO];
+
+        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 4] setVisible: NO];
+        */
+        
+        [[self getChildByTag: SuperWeaponsMenuTag] setVisible:NO];
+        
         //This puts a ship on screen so you know you've switched to this layer and everything is loading right
         //**COMMENT THIS OUT WHEN YOU START WORK ON YOUR OWN GAME
         /*
@@ -232,6 +375,51 @@ int repairChanceEqualizer;
         gameEvents = [NSDictionary dictionaryWithContentsOfFile:path];
         eventNumber=1;
         eventCycle =0;
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"explosion.plist"];
+        
+        //Load in the spritesheet, if retina Kobold2D will automatically use bearframes-hd.png
+        
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"explosion.png"];
+        
+        [self addChild:spriteSheet];
+        
+        //Define the frames based on the plist - note that for this to work, the original files must be in the format bear1, bear2, bear3 etc...
+        
+        //When it comes time to get art for your own original game, makegameswith.us will give you spritesheets that follow this convention, <spritename>1 <spritename>2 <spritename>3 etc...
+        
+        tauntingFrames = [NSMutableArray array];
+        
+        for(int i = 1; i <= 11; ++i)
+        {
+            [tauntingFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"explosion%d.png", i]]];
+        }
+        
+        //Initialize the bear with the first frame you loaded from your spritesheet, bear1
+        
+        
+        //Create an animation from the set of frames you created earlier
+        
+        taunting = [CCAnimation animationWithFrames: tauntingFrames delay:0.05f];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:taunting name:@"explosion"];
+        //Create an action with the animation that can then be assigned to a sprite
+        
+        taunt = [CCAnimate actionWithAnimation:taunting restoreOriginalFrame:NO];
+        
+        //tell the bear to run the taunting action
+        
+        /*
+        sprite = [CCSprite spriteWithSpriteFrameName:@"explosion1.png"];
+        
+        sprite.anchorPoint = CGPointZero;
+        sprite.position = CGPointMake(0,0);
+        
+        [sprite runAction:taunt];
+        
+        [self addChild:sprite z:1];
+         */
         /*
          for (id key in getRoot) {
          NSLog(@"key: %@, value: %@ \n", key, [getRoot objectForKey:key]);
@@ -273,7 +461,7 @@ int repairChanceEqualizer;
          [self addChild: verifyTouchStart z:1 tag: TouchStartedLabelTag];
          [self addChild: verifyTouchAvailable z:1 tag: TouchAvailableLabelTag];
          [self addChild: verifyTouchEnd z:1 tag: TouchEndedLabelTag];
-         //**
+         
          */
         
         //This will schedule a call to the update method every frame
@@ -288,6 +476,28 @@ int repairChanceEqualizer;
     
 	return self;
 }
+
+-(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+        float THRESHOLD = 2;
+    NSLog(@"Meter");
+    if (acceleration.x > THRESHOLD || acceleration.x < -THRESHOLD ||
+        acceleration.y > THRESHOLD || acceleration.y < -THRESHOLD ||
+        acceleration.z > THRESHOLD || acceleration.z < -THRESHOLD) {
+        
+        if (!shake_once) {
+            shake_once = YES;
+            NSLog(@"Tremors");
+        }
+        
+    }
+    else {
+        shake_once = NO;
+    NSLog(@"Nothing");
+    }
+    
+}
+
 
 -(void) update: (ccTime) dt
 {
@@ -340,13 +550,21 @@ int repairChanceEqualizer;
         {
             [(Pirate*)currentEvent play];
         }
-        if([[currentEvent type] isEqualToString:@"Planet"])
+        else if([[currentEvent type] isEqualToString:@"Planet"])
         {
             [(Planet*)currentEvent play];
         }
-        if([[currentEvent type] isEqualToString:@"Interlude"])
+        else if([[currentEvent type] isEqualToString:@"Interlude"])
         {
             [(Interlude*)currentEvent play];
+        }
+        else if([[currentEvent type] isEqualToString:@"PirateKing"])
+        {
+            [(PirateKing*) currentEvent play];
+        }
+        else if([[currentEvent type] isEqualToString:@"SpacePort"])
+        {
+            [(SpacePort*) currentEvent play];
         }
         if(currentEvent.playState==-1)
         {
@@ -421,7 +639,7 @@ int repairChanceEqualizer;
         {
             currentEvent = [Interlude createInterludeWithMessage: @""];
             [self addChild: currentEvent z:1 tag: CurrentEntityTag];
-            NSString* textToBeShown = @"You don't stay long at planets.";
+            NSString* textToBeShown = @"You don't stay long at planets. Tap to continue.";
             [(CCLabelTTF*)[self getChildByTag: TextOnScreenTag] setString: textToBeShown];
             break;
         }
@@ -445,7 +663,7 @@ int repairChanceEqualizer;
         {
             currentEvent = [Interlude createInterludeWithBoxAtX:screenSize.width*3/4-105 y:screenSize.height*9/10-10 withWidth:215 andHeight:24];
             [self addChild: currentEvent z:1 tag: CurrentEntityTag];
-            NSString* textToBeShown = @"This shows how strong your attacks are.";
+            NSString* textToBeShown = @"This shows how strong and fast your attacks are.";
             [(CCLabelTTF*)[self getChildByTag: TextOnScreenTag] setString: textToBeShown];
             break;
         }
@@ -642,8 +860,12 @@ int repairChanceEqualizer;
  */
 -(void) loadNextIncrementalEvent
 {
+    NSLog(@"Loading Next IncrementalEvent");
+    NSLog([NSString stringWithFormat:@"%@%u", @"Event: ", eventNumber]);
     if(eventNumber == 1 || eventNumber == 3 || eventNumber == 5)
     {
+        
+        //[self removeExplosions];
         int attackInterval=10;
         if(eventCycle<15*9)
         {
@@ -653,9 +875,19 @@ int repairChanceEqualizer;
             attackInterval=1;
         }
         //NSLog([ NSString stringWithFormat:@"%@%u",@"AttackInterval: ",attackInterval]);
-        currentEvent =[Pirate createPirateWithHealth:100+eventCycle*20 andAttack:15+(eventCycle*5/3) andAttackInterval:attackInterval andPlayer:ship withBounty: 3];
+        if(eventCycle%10==0 && eventCycle!=0)
+        {
+            currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*20) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
+            [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
+            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
+            eventNumber=8;
+            superWeaponInUse=currentSuperWeapon;
+        }
+        else{
+        currentEvent =[Pirate createPirateWithHealth:100+eventCycle*15 andAttack:15+(eventCycle*5/3) andAttackInterval:attackInterval andPlayer:ship withBounty: 3];
         [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
         [self addChild: currentEvent z:1 tag:CurrentEntityTag];
+        }
     }
     else if(eventNumber %2 ==0)
     {
@@ -667,16 +899,29 @@ int repairChanceEqualizer;
             }
         }
         currentEvent = [Interlude createInterludeWithTime:90];
-        
     }
     else if(eventNumber ==7)
     {
+        
         currentEvent = [Planet createPlanet];
         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
         [self addChild: currentEvent z:0 tag:CurrentEntityTag];
+        if(eventCycle==9)
+        {
+            eventNumber=8;
+        }
+    }
+    else if(eventNumber==9)
+    {
+        NSLog(@"Loading Port");
+        currentEvent = [SpacePort createSpacePort];
+        [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
+        [self addChild: currentEvent z:0 tag:CurrentEntityTag];
+
     }
     eventNumber++;
-    if(eventNumber>7)
+    NSLog([NSString stringWithFormat:@"%@%u", @"Event: ", eventNumber]);
+    if(eventNumber>7 && eventNumber!=9)
     {
         eventNumber=1;
         eventCycle++;
@@ -899,30 +1144,6 @@ int repairChanceEqualizer;
     {
         currentPlayerCredits-=2;
         [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
-        [ship upgradeHull];
     }
 }
 
@@ -931,11 +1152,6 @@ int repairChanceEqualizer;
     if(currentPlayerCredits>4)
     {
         currentPlayerCredits-=5;
-        [ship upgradeWeapons];
-        [ship upgradeWeapons];
-        [ship upgradeWeapons];
-        [ship upgradeWeapons];
-        [ship upgradeWeapons];
         [ship upgradeWeapons];
     }
 }
@@ -950,6 +1166,20 @@ int repairChanceEqualizer;
         [ship upgradeAttackSpeed];
         }
     }
+}
+
+-(void) bringUpSuperWeaponsMenu
+{
+    [[self getChildByTag: SuperWeaponsMenuTag] setVisible:YES];
+    
+    [[self getChildByTag: SuperWeaponsMenuTitleTag] setVisible:YES];
+}
+
+-(void) putAwaySuperWeaponsMenu
+{
+    [[self getChildByTag: SuperWeaponsMenuTag] setVisible: NO];
+    
+    [[self getChildByTag: SuperWeaponsMenuTitleTag] setVisible:NO];
 }
 
 -(void) repairPlayerShip
@@ -972,5 +1202,21 @@ int repairChanceEqualizer;
     [[CCDirector sharedDirector] replaceScene: (CCScene*)[[GenericMenuLayer alloc] init]];
 }
 
+-(CCSprite*) getExplosion
+{
+    sprite = [CCSprite spriteWithSpriteFrameName:@"explosion1.png"];
+    
+    [sprite runAction:taunt];
+    
+    return sprite;
+    
+}
 
+-(void) removeExplosions
+{
+    while([self getChildByTag:ExplosionTag]!=nil)
+    {
+        [self removeChildByTag:ExplosionTag];
+    }
+}
 @end

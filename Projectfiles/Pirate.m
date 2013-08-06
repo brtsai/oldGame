@@ -8,7 +8,7 @@
 
 #import "Pirate.h"
 #import "Ship.h"
-#import "GAmelayer.h"
+#import "Gamelayer.h"
 @implementation Pirate
 @synthesize damage;
 @synthesize attackInterval;
@@ -168,13 +168,17 @@ int hull;
 
 -(void) deathAnimation
 {
-    
     for(int i=0;i<bounty;i++)
     {
         CCSprite* coin = [CCSprite spriteWithFile:@"spaceCoin.png"];
         [coin setPosition: [self position]];
         [self.parent addChild: coin z:1 tag:9001+i];
     }
+    
+    CCSprite* explosion = [((GameLayer*)self.parent) getExplosion];
+    explosion.position = self.position;
+    [self.parent addChild:explosion z:1 tag:ExplosionTag];
+   
     [super setPlayState:-1];
     [self removeSelf];
 }
@@ -182,10 +186,7 @@ int hull;
 -(void) updateLabel
 {
     text=[NSString stringWithFormat: @" %@ %u", @"HP:",[super hitpoints]];
-
-    [textLabel setString:text];
-    
-    
+    [textLabel setString:text];    
 }
 
 @end

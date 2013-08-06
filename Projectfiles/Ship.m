@@ -42,13 +42,13 @@
 
 -(void) upgradeHull
 {
-    [super setHitpoints:[super hitpoints]+2];
-    hull+=2;
+    [super setHitpoints:[super hitpoints]+50];
+    hull+=50;
 }
 
 -(void) upgradeWeapons
 {
-    damage++;
+    damage+=8;
 }
 
 -(void) upgradeAttackSpeed

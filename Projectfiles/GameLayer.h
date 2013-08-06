@@ -28,21 +28,31 @@ typedef enum
     PlayerCreditsSpriteTag,
     PlayerAttackTag,
     UpgradesMenuTag,
-    TextOnScreenTag
+    TextOnScreenTag,
+    ExplosionTag,
+    SuperWeaponsMenuTag,
+    SuperWeaponsMenuTitleTag
 } LabelTags;
 
 @interface GameLayer : CCLayer 
 {
     CCSprite* Background;
-
+    CCAction *taunt;
+    NSMutableArray *tauntingFrames;
 }
 +(CGRect) screenRect;
 +(GameLayer*) sharedGameLayer;
+-(CCSprite*) getExplosion;
+-(void) removeExplosions;
 -(void) bringUpUpgradesMenu;
 -(void) putAwayUpgradesMenu;
 -(id) initAsTutorial;
 -(id) initAsEndless;
 -(id) resume;
+-(void) putAwaySuperWeaponsMenu;
+-(void) bringUpSuperWeaponsMenu;
 
+-(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
+@property int superWeaponInUse;
 @property int gameState;
 @end

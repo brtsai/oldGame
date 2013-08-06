@@ -24,12 +24,12 @@
         
         CCMenuItemLabel *tutorialMenuItem = [CCMenuItemLabel itemWithLabel:tutorialLabel target:self selector:@selector(tutorial)];
         
-        CCLabelTTF * highScores = [CCLabelTTF labelWithString:@"High Scores" fontName: @"arial" fontSize: 80.0f];
+        CCLabelTTF * highScores = [CCLabelTTF labelWithString:@"High Scores" fontName: @"arial" fontSize: 40.0f];
         
         CCMenuItemLabel * highScoresLabel = [CCMenuItemLabel itemWithLabel:highScores target:self selector:@selector(toHighScores)];
                 
-        CCMenu *menu = [CCMenu menuWithItems:item, tutorialMenuItem, nil];
-        [menu alignItemsVerticallyWithPadding:20.0f];
+        CCMenu *menu = [CCMenu menuWithItems:item, tutorialMenuItem, highScoresLabel, nil];
+        [menu alignItemsVerticallyWithPadding:5.0f];
         
     
         [self addChild:menu];
