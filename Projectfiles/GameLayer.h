@@ -31,13 +31,14 @@ typedef enum
     TextOnScreenTag,
     ExplosionTag,
     SuperWeaponsMenuTag,
-    SuperWeaponsMenuTitleTag
+    SuperWeaponsMenuTitleTag,
+    CurrentSuperWeaponIndicatorTag
 } LabelTags;
 
 @interface GameLayer : CCLayer 
 {
     CCSprite* Background;
-    CCAction *taunt;
+    CCSequence *taunt;
     NSMutableArray *tauntingFrames;
 }
 +(CGRect) screenRect;
@@ -51,7 +52,6 @@ typedef enum
 -(id) resume;
 -(void) putAwaySuperWeaponsMenu;
 -(void) bringUpSuperWeaponsMenu;
-
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 @property int superWeaponInUse;
 @property int gameState;

@@ -48,6 +48,7 @@ CCSprite* background;
 CCSprite* playerCreditsSprite;
 CCSprite* sprite;
 CCLabelTTF* playerCreditsLabel;
+CCLabelTTF* currentSuperWeaponIndicator;
 int currentPlayerCredits;
 int currentSuperWeapon;
 //**
@@ -185,7 +186,7 @@ int repairChanceEqualizer;
     
     //[[self getChildByTag:UpgradesMenuTag] setVisible: NO];
     
-    [self removeChildByTag: SuperWeaponsMenuTag];
+    
     
     CCLabelTTF* megaLaserLabel = [CCLabelTTF labelWithString:@"Mega Laser" fontName: @"arial" fontSize: 25.0f];
     CCLabelTTF* emergencyRepairLabel = [CCLabelTTF labelWithString: @"Emergency Repair" fontName: @"arial" fontSize:25.0f];
@@ -202,6 +203,14 @@ int repairChanceEqualizer;
     superWeaponsMenu= [CCMenu menuWithItems: megaLaserMenuItem, emergencyRepairMenuItem, pointDefenseMenuItem, reflectorMenuItem,nil];
     [superWeaponsMenu alignItemsVertically];
     [superWeaponsMenu setPosition: ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+    /*
+    [megaLaserMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:1].visible];
+    [emergencyRepairMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:2].visible];
+    [pointDefenseMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:3].visible];
+    [reflectorMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:4].visible];
+     */
+    [superWeaponsMenu setVisible: [self getChildByTag:SuperWeaponsMenuTag].visible];
+    [self removeChildByTag: SuperWeaponsMenuTag];
     [self addChild: superWeaponsMenu z:1 tag:SuperWeaponsMenuTag];
 
     
@@ -258,7 +267,7 @@ int repairChanceEqualizer;
 {
 	if ((self = [super init]))
 	{
-        //currentSuperWeapon=1;
+        currentSuperWeapon=1;
         repairChanceEqualizer=0;
         currentEvent=nil;
         gameState=1;
@@ -272,7 +281,10 @@ int repairChanceEqualizer;
         self.accelerometerEnabled = YES;
         [[UIAccelerometer sharedAccelerometer] setDelegate:self];
         [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
-
+        
+        currentSuperWeaponIndicator = [CCLabelTTF labelWithString:@"No Adv. Tech" fontName:@"arial" fontSize:25.0f];
+        currentSuperWeaponIndicator.position = ccp(screenSize.width*2/3, screenSize.height*83/100);
+        [self addChild: currentSuperWeaponIndicator z:1 tag:CurrentSuperWeaponIndicatorTag];
         //Loads the background image.
         background = [CCSprite spriteWithFile:@"StarBackground.png"];
         [background setAnchorPoint:ccp(0,0)];
@@ -406,7 +418,7 @@ int repairChanceEqualizer;
         [[CCAnimationCache sharedAnimationCache] addAnimation:taunting name:@"explosion"];
         //Create an action with the animation that can then be assigned to a sprite
         
-        taunt = [CCAnimate actionWithAnimation:taunting restoreOriginalFrame:NO];
+        taunt = [CCSequence actions: [CCAnimate actionWithAnimation:taunting restoreOriginalFrame:NO], nil];
         
         //tell the bear to run the taunting action
         
@@ -501,11 +513,10 @@ int repairChanceEqualizer;
 
 -(void) update: (ccTime) dt
 {
-    
-    
     [self updatePlayerHealthIndicator];
     [self updatePlayerAttackIndicator];
     [self updatePlayerCoinIndicator];
+    [self updateCurrentSuperWeaponIndicator];
     KKInput *input = [KKInput sharedInput];
     [self moveBackground];
     //This will be true during the frame a new finger touches the screen
@@ -875,7 +886,7 @@ int repairChanceEqualizer;
             attackInterval=1;
         }
         //NSLog([ NSString stringWithFormat:@"%@%u",@"AttackInterval: ",attackInterval]);
-        if(eventCycle%10==0 && eventCycle!=0)
+        if(eventCycle%10==0)
         {
             currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*20) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
             [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
@@ -913,6 +924,8 @@ int repairChanceEqualizer;
     }
     else if(eventNumber==9)
     {
+        currentSuperWeapon=0;
+        superWeaponInUse=0;
         NSLog(@"Loading Port");
         currentEvent = [SpacePort createSpacePort];
         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
@@ -1168,6 +1181,26 @@ int repairChanceEqualizer;
     }
 }
 
+-(void) updateCurrentSuperWeaponIndicator
+{
+    NSString* stringToUse;
+    switch(currentSuperWeapon)
+    {
+        case 1: stringToUse = @"Tech: Pew Pew Lazorz";
+            break;
+        case 2: stringToUse = @"Tech: Emer. Repair";
+            break;
+        case 3: stringToUse = @"Tech: Pwnt. Defense";
+            break;
+        case 4: stringToUse = @"Tech: Rflcptr Shields";
+            break;
+        default: stringToUse = @"No Adv. Tech";
+            break;
+    }
+    
+    [((CCLabelTTF*)[self getChildByTag: CurrentSuperWeaponIndicatorTag]) setString:stringToUse];
+}
+
 -(void) bringUpSuperWeaponsMenu
 {
     [[self getChildByTag: SuperWeaponsMenuTag] setVisible:YES];
@@ -1205,12 +1238,14 @@ int repairChanceEqualizer;
 -(CCSprite*) getExplosion
 {
     sprite = [CCSprite spriteWithSpriteFrameName:@"explosion1.png"];
-    
+    taunt = [CCSequence actions: [CCAnimate actionWithAnimation:taunting restoreOriginalFrame:NO], [CCCallFuncND actionWithTarget:sprite selector:@selector(removeFromParentAndCleanup:) data:(void*)NO], nil];
     [sprite runAction:taunt];
     
     return sprite;
     
 }
+
+
 
 -(void) removeExplosions
 {
