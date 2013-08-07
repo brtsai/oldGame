@@ -57,7 +57,7 @@ bool moving;
 Entity* currentEvent;
 NSDictionary* gameEvents;
 int eventNumber;
-int eventCycle;
+@synthesize eventCycle;
 int enemyCount;
 int gameState;
 int repairChanceEqualizer;
@@ -267,7 +267,7 @@ int repairChanceEqualizer;
 {
 	if ((self = [super init]))
 	{
-        currentSuperWeapon=1;
+        currentSuperWeapon=0;
         repairChanceEqualizer=0;
         currentEvent=nil;
         gameState=1;
@@ -552,7 +552,7 @@ int repairChanceEqualizer;
     
     if([ship hitpoints] <1)
     {
-        [[CCDirector sharedDirector] replaceScene: (CCScene*)[[GameOverLayer alloc] initWithSector:eventCycle]];
+        [[CCDirector sharedDirector] replaceScene: (CCScene*)[[GameOverLayer alloc] initWithSector:eventCycle andDeathMessage:@"You Died!"]];
     }
     
     if(currentEvent!=nil)
@@ -886,9 +886,9 @@ int repairChanceEqualizer;
             attackInterval=1;
         }
         //NSLog([ NSString stringWithFormat:@"%@%u",@"AttackInterval: ",attackInterval]);
-        if(eventCycle%10==0)
+        if(eventCycle%10==0 && eventCycle!=0)
         {
-            currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*20) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
+            currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*40) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
             [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
             [self addChild: currentEvent z:1 tag:CurrentEntityTag];
             eventNumber=8;

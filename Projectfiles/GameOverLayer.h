@@ -9,5 +9,5 @@
 #import "CCLayer.h"
 
 @interface GameOverLayer : CCLayer
--(id) initWithSector: (int) sector;
+-(id) initWithSector: (int) sector andDeathMessage: (NSString*) deathMessage;
 @end

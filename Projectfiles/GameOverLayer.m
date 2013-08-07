@@ -11,7 +11,7 @@
 @implementation GameOverLayer
 CGSize screenSize;
 
--(id) initWithSector: (int) sector
+-(id) initWithSector: (int) sector andDeathMessage: (NSString*) deathMessage
 {
 	if ((self = [super init]))
 	{
@@ -30,7 +30,7 @@ CGSize screenSize;
         menu.position = ccp(screenSize.width/2, screenSize.height*1/4);
         [self addChild:menu];
         
-        CCLabelTTF *deathLabel = [CCLabelTTF labelWithString:@" You Died!" fontName: @"arial" fontSize:40.0f];
+        CCLabelTTF *deathLabel = [CCLabelTTF labelWithString:deathMessage fontName: @"arial" fontSize:40.0f];
         deathLabel.position = ccp(screenSize.width/2,screenSize.height*3/4);
         [self addChild:deathLabel];
         if([[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"]==nil || [[[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"] intValue]<sector)

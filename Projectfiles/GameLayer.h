@@ -55,4 +55,5 @@ typedef enum
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 @property int superWeaponInUse;
 @property int gameState;
+@property int eventCycle;
 @end

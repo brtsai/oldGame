@@ -9,6 +9,7 @@
 #import "PauseLayer.h"
 #import "GameLayer.h"
 #import "GenericMenuLayer.h"
+#import "GameOverLayer.h"
 @implementation PauseLayer
 CCMenu* menu;
 GameLayer* pausedGame;
@@ -26,14 +27,20 @@ GameLayer* pausedGame;
             pausedGame = theGame;
             CCLabelTTF* resume = [CCLabelTTF labelWithString:@"Resume" fontName:@"arial" fontSize:80.0f];
             CCMenuItemLabel* resumeButton = [CCMenuItemLabel itemWithLabel:resume target:self selector:@selector(resumeGame)];
-            menu = [CCMenu menuWithItems:resumeButton,nil];
+            CCLabelTTF* abandonGame = [CCLabelTTF labelWithString: @"Abandon Mission" fontName:@"arial" fontSize:40.0f];
+            CCMenuItemLabel* abandonTheGame = [CCMenuItemLabel itemWithLabel:abandonGame target:self selector:@selector(exitGame)];
+            menu = [CCMenu menuWithItems:resumeButton,abandonTheGame, nil];
+            [menu alignItemsVerticallyWithPadding:10.0f];
             [self addChild: menu];
         }
     }
     return self;
 }
 
-
+-(void) exitGame
+{
+    [[CCDirector sharedDirector] replaceScene: (CCScene*)[[GameOverLayer alloc] initWithSector:pausedGame.eventCycle andDeathMessage:@"Mission Abandoned!"]];
+}
 
 -(void) resumeGame
 {
