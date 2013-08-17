@@ -71,7 +71,6 @@
 		A5528832179D018C00A2CDAA /* coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coins.png; path = Projectfiles/Resources/coins.png; sourceTree = "<group>"; };
 		A5528834179DA44E00A2CDAA /* Pirate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Pirate.m; path = Projectfiles/Pirate.m; sourceTree = "<group>"; };
 		A5528836179DAC9600A2CDAA /* darkShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkShip.png; path = Projectfiles/Resources/darkShip.png; sourceTree = "<group>"; };
-		A55E868717A6F82500E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenu.m; path = Projectfiles/CustomCCMenu.m; sourceTree = "<group>"; };
 		A55E868A17A6F83200E3416F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A55E868B17A6F83200E3416F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A55E868C17A6F83200E3416F /* CustomCCMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCCMenu.h; sourceTree = "<group>"; };
@@ -112,15 +111,10 @@
 		A55E86B017A6F83200E3416F /* ScramblerBoss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScramblerBoss.m; sourceTree = "<group>"; };
 		A55E86B117A6F83200E3416F /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		A55E86B217A6F83200E3416F /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
-		A55E86B317A6FAB600E3416F /* CustomCCMenuItemLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenuItemLabel.m; path = Projectfiles/CustomCCMenuItemLabel.m; sourceTree = "<group>"; };
-		A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomCCMenu.m; path = Projectfiles/CustomCCMenu.m; sourceTree = "<group>"; };
-		A5864A1917B01A3D005AAEBF /* Exp_type_C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Exp_type_C.png; path = Projectfiles/Resources/Exp_type_C.png; sourceTree = "<group>"; };
-		A5864A1A17B01A3D005AAEBF /* explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png"; path = "Projectfiles/Resources/explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png"; sourceTree = "<group>"; };
 		A5864A1D17B01B64005AAEBF /* Explosion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Explosion.plist; path = Projectfiles/Resources/Explosion.plist; sourceTree = "<group>"; };
 		A5864A1E17B01B64005AAEBF /* Explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explosion.png; path = Projectfiles/Resources/Explosion.png; sourceTree = "<group>"; };
 		A5864A2117B02048005AAEBF /* explosion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = explosion.plist; path = Projectfiles/Resources/explosion.plist; sourceTree = "<group>"; };
 		A5864A2217B02048005AAEBF /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = Projectfiles/Resources/explosion.png; sourceTree = "<group>"; };
-		A5864A2517B025DB005AAEBF /* Explosion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Explosion.m; path = Projectfiles/Explosion.m; sourceTree = "<group>"; };
 		A5864A2717B06060005AAEBF /* SpacePort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpacePort.m; path = Projectfiles/SpacePort.m; sourceTree = "<group>"; };
 		A59D0BD01798F2BB0028708E /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Ship.m; path = Projectfiles/Ship.m; sourceTree = "<group>"; };
 		A59D0BD41798F8950028708E /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarBackground.png; path = Projectfiles/Resources/StarBackground.png; sourceTree = "<group>"; };
@@ -274,22 +268,16 @@
 			children = (
 				A5E3711817BF1C2F00178839 /* Default-568h@2x.png */,
 				A5864A2717B06060005AAEBF /* SpacePort.m */,
-				A5864A2517B025DB005AAEBF /* Explosion.m */,
 				A5864A2117B02048005AAEBF /* explosion.plist */,
 				A5864A2217B02048005AAEBF /* explosion.png */,
 				A5864A1D17B01B64005AAEBF /* Explosion.plist */,
 				A5864A1E17B01B64005AAEBF /* Explosion.png */,
-				A5864A1917B01A3D005AAEBF /* Exp_type_C.png */,
-				A5864A1A17B01A3D005AAEBF /* explosion_spritesheet_for_games_by_gintasdx-d5r28q5.png */,
 				A53BC14717A9BC3E00BCB942 /* PirateKing.m */,
 				A53BC14517A9BBCC00BCB942 /* pirateKing.png */,
 				A53BC14317A9B1C600BCB942 /* spacePort.png */,
 				A528ADB917A8633B006238B4 /* PauseLayer.m */,
 				A528ADB717A85FCE006238B4 /* HighScoresLayer.m */,
-				A55E86B517A6FD4B00E3416F /* CustomCCMenu.m */,
-				A55E86B317A6FAB600E3416F /* CustomCCMenuItemLabel.m */,
 				A55E868917A6F83200E3416F /* Projectfiles */,
-				A55E868717A6F82500E3416F /* CustomCCMenu.m */,
 				A5155A5517A1DA0A00F0F409 /* spaceCoin.png */,
 				A5BDF1D4179F3587001F9D29 /* Interlude.m */,
 				A5BDF1D2179F2804001F9D29 /* Events.plist */,
