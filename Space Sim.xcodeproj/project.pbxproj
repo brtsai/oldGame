@@ -525,6 +525,7 @@
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
 				PRODUCT_NAME = "Space Sim-iOS";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -537,6 +538,7 @@
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
 				PRODUCT_NAME = "Space Sim-iOS";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
