@@ -73,10 +73,6 @@
 		A5528836179DAC9600A2CDAA /* darkShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkShip.png; path = Projectfiles/Resources/darkShip.png; sourceTree = "<group>"; };
 		A55E868A17A6F83200E3416F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A55E868B17A6F83200E3416F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A55E868C17A6F83200E3416F /* CustomCCMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCCMenu.h; sourceTree = "<group>"; };
-		A55E868D17A6F83200E3416F /* CustomCCMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCCMenu.m; sourceTree = "<group>"; };
-		A55E868E17A6F83200E3416F /* CustomCCMenuItemLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCCMenuItemLabel.h; sourceTree = "<group>"; };
-		A55E868F17A6F83200E3416F /* CustomCCMenuItemLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCCMenuItemLabel.m; sourceTree = "<group>"; };
 		A55E869017A6F83200E3416F /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		A55E869117A6F83200E3416F /* Entity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		A55E869217A6F83200E3416F /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 		A55E86AC17A6F83200E3416F /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		A55E86AD17A6F83200E3416F /* spaceCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceCoin.png; sourceTree = "<group>"; };
 		A55E86AE17A6F83200E3416F /* StarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarBackground.png; sourceTree = "<group>"; };
-		A55E86AF17A6F83200E3416F /* ScramblerBoss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScramblerBoss.h; sourceTree = "<group>"; };
-		A55E86B017A6F83200E3416F /* ScramblerBoss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScramblerBoss.m; sourceTree = "<group>"; };
 		A55E86B117A6F83200E3416F /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		A55E86B217A6F83200E3416F /* Ship.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		A5864A1D17B01B64005AAEBF /* Explosion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Explosion.plist; path = Projectfiles/Resources/Explosion.plist; sourceTree = "<group>"; };
@@ -193,10 +187,6 @@
 			children = (
 				A55E868A17A6F83200E3416F /* AppDelegate.h */,
 				A55E868B17A6F83200E3416F /* AppDelegate.m */,
-				A55E868C17A6F83200E3416F /* CustomCCMenu.h */,
-				A55E868D17A6F83200E3416F /* CustomCCMenu.m */,
-				A55E868E17A6F83200E3416F /* CustomCCMenuItemLabel.h */,
-				A55E868F17A6F83200E3416F /* CustomCCMenuItemLabel.m */,
 				A55E869017A6F83200E3416F /* Entity.h */,
 				A55E869117A6F83200E3416F /* Entity.m */,
 				A55E869217A6F83200E3416F /* GameLayer.h */,
@@ -217,8 +207,6 @@
 				A55E86A117A6F83200E3416F /* Prefix-iOS.pch */,
 				A55E86A217A6F83200E3416F /* Prefix-Mac.pch */,
 				A55E86A317A6F83200E3416F /* Resources */,
-				A55E86AF17A6F83200E3416F /* ScramblerBoss.h */,
-				A55E86B017A6F83200E3416F /* ScramblerBoss.m */,
 				A55E86B117A6F83200E3416F /* Ship.h */,
 				A55E86B217A6F83200E3416F /* Ship.m */,
 			);
