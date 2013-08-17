@@ -116,7 +116,7 @@
 		A59D0BD81798FA7A0028708E /* GameOverLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameOverLayer.m; path = Projectfiles/GameOverLayer.m; sourceTree = "<group>"; };
 		A5BDF1D0179F0202001F9D29 /* Planet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Planet.m; path = Projectfiles/Planet.m; sourceTree = "<group>"; };
 		A5BDF1D2179F2804001F9D29 /* Events.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Events.plist; path = Projectfiles/Resources/Events.plist; sourceTree = "<group>"; };
-		A5BDF1D4179F3587001F9D29 /* Interlude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Interlude.m; path = Projectfiles/Interlude.m; sourceTree = "<group>"; };
+		A5BDF1D4179F3587001F9D29 /* Interlude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Interlude.m; sourceTree = "<group>"; };
 		A5E3711817BF1C2F00178839 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AA6049AC15AE4B7B0043DFF9 /* GenericMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericMenuLayer.h; sourceTree = "<group>"; };
 		AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericMenuLayer.m; sourceTree = "<group>"; };
@@ -209,6 +209,7 @@
 				A55E86A317A6F83200E3416F /* Resources */,
 				A55E86B117A6F83200E3416F /* Ship.h */,
 				A55E86B217A6F83200E3416F /* Ship.m */,
+				A5BDF1D4179F3587001F9D29 /* Interlude.m */,
 			);
 			path = Projectfiles;
 			sourceTree = "<group>";
@@ -267,7 +268,6 @@
 				A528ADB717A85FCE006238B4 /* HighScoresLayer.m */,
 				A55E868917A6F83200E3416F /* Projectfiles */,
 				A5155A5517A1DA0A00F0F409 /* spaceCoin.png */,
-				A5BDF1D4179F3587001F9D29 /* Interlude.m */,
 				A5BDF1D2179F2804001F9D29 /* Events.plist */,
 				A5BDF1D0179F0202001F9D29 /* Planet.m */,
 				A5528836179DAC9600A2CDAA /* darkShip.png */,
