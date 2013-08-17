@@ -68,13 +68,13 @@ CCLabelTTF* textLabel;
 
 -(void) updateLabel
 {
-    if([super playState]==1) text=@"Entering Orbit";
+    if([super playState]==1) text=@"Docking in Progress";
     else if([super playState]==2)
     {
-        NSString* newText = [NSString stringWithFormat:@" %@ %u", @"Leaving Orbit in: ", 300-[super count]];
+        NSString* newText = [NSString stringWithFormat:@" %@ %u", @"Undocking in: ", 300-[super count]];
         text=newText;
     }
-    else if([super playState]==3) text=@"Leaving System";
+    else if([super playState]==3) text=@"Leaving Port";
     
     [textLabel setString:text];
     

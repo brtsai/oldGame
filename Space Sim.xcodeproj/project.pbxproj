@@ -28,6 +28,7 @@
 		A5BDF1D1179F0202001F9D29 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BDF1D0179F0202001F9D29 /* Planet.m */; };
 		A5BDF1D3179F2804001F9D29 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5BDF1D2179F2804001F9D29 /* Events.plist */; };
 		A5BDF1D5179F3587001F9D29 /* Interlude.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BDF1D4179F3587001F9D29 /* Interlude.m */; };
+		A5E3711917BF1C2F00178839 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E3711817BF1C2F00178839 /* Default-568h@2x.png */; };
 		AA6049AE15AE4B7C0043DFF9 /* GenericMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */; };
 		AA6049B015AE500B0043DFF9 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6049AF15AE500B0043DFF9 /* ship.png */; };
 		AA6049B215AE50130043DFF9 /* ship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6049B115AE50130043DFF9 /* ship-hd.png */; };
@@ -128,6 +129,7 @@
 		A5BDF1D0179F0202001F9D29 /* Planet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Planet.m; path = Projectfiles/Planet.m; sourceTree = "<group>"; };
 		A5BDF1D2179F2804001F9D29 /* Events.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Events.plist; path = Projectfiles/Resources/Events.plist; sourceTree = "<group>"; };
 		A5BDF1D4179F3587001F9D29 /* Interlude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Interlude.m; path = Projectfiles/Interlude.m; sourceTree = "<group>"; };
+		A5E3711817BF1C2F00178839 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AA6049AC15AE4B7B0043DFF9 /* GenericMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericMenuLayer.h; sourceTree = "<group>"; };
 		AA6049AD15AE4B7B0043DFF9 /* GenericMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericMenuLayer.m; sourceTree = "<group>"; };
 		AA6049AF15AE500B0043DFF9 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
+				A5E3711817BF1C2F00178839 /* Default-568h@2x.png */,
 				A5864A2717B06060005AAEBF /* SpacePort.m */,
 				A5864A2517B025DB005AAEBF /* Explosion.m */,
 				A5864A2117B02048005AAEBF /* explosion.plist */,
@@ -470,6 +473,7 @@
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				AA6049B015AE500B0043DFF9 /* ship.png in Resources */,
 				AA6049B215AE50130043DFF9 /* ship-hd.png in Resources */,
+				A5E3711917BF1C2F00178839 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,6 +42,8 @@ int width, height;
     return myEntity;
 }
 
+
+
 -(id) initWithBoxAtX: (int) newX y: (int) newY withWidth: (int) newWidth andHeight: (int)newHeight
 {
     if ((self = [super init]))

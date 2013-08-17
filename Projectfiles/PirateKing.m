@@ -137,9 +137,9 @@ int hull;
         attacking=YES;
         //NSLog(@"PirateAttacked");
         
-        if([((GameLayer*) self.parent) superWeaponInUse]==1)
+        if([((GameLayer*) self.parent) superWeaponInUse]==2)
         {
-            if([target hitpoints]< [self damage])
+            if([target hitpoints]< [self damage]+1)
             {
                 [target repair];
                 [((GameLayer*) self.parent)setSuperWeaponInUse: 0];

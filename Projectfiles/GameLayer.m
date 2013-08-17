@@ -25,7 +25,7 @@
 #import "PauseLayer.h"
 #import "SpacePort.h"
 @implementation GameLayer
-bool shake_once;
+//bool shake_once;
 static CGRect screenRect;
 NSString* healthToDisplay;
 NSString* attackPowerToDisplay;
@@ -37,11 +37,6 @@ CCMenu* superWeaponsMenu;
 CCLabelTTF* superWeaponsMenuTitle;
 CCMenu* pauseButton;
 CCAnimation *taunting;
-//These labels will be used to check if touch input is working
-//**COMMENT THIS OUT WHEN YOU START WORK ON YOUR OWN GAME
-//CCLabelTTF* verifyTouchStart;
-//CCLabelTTF* verifyTouchAvailable;
-//CCLabelTTF* verifyTouchEnd;
 CCLabelTTF* health;
 CCLabelTTF* attackPower;
 CCSprite* background;
@@ -60,8 +55,12 @@ int eventNumber;
 @synthesize eventCycle;
 int enemyCount;
 int gameState;
+int scenarioType;
 int repairChanceEqualizer;
 @synthesize superWeaponInUse;
+
+NSDictionary* captain;
+
 //this allows other classes in your project to query the GameLayer for the screenRect
 +(CGRect) screenRect
 {
@@ -86,7 +85,6 @@ int repairChanceEqualizer;
         [self addChild: leave z:1];
         gameState=2;
     }
-    
     return self;
 }
 
@@ -104,172 +102,24 @@ int repairChanceEqualizer;
     return self;
 }
 
--(id) resume
+-(id) initAsScenario
 {
-    [self scheduleUpdate];
-    [self reloadMenus];
-    [self reloadSprites];
+    if(self = [self init])
+    {
+        gameState=3;
+    }
     return self;
-}
--(void) reloadSprites
-{
-    NSMutableArray* arrayE = [[NSMutableArray alloc] init];
-    while([self getChildByTag:ExplosionTag]!=nil)
-    {
-        NSLog(@"Explosion found");
-        CCSprite* explosion = (CCSprite*)[self getChildByTag:ExplosionTag];
-        [arrayE addObject:explosion];
-        [self removeChildByTag:ExplosionTag];
-    }
-    NSLog([NSString stringWithFormat:@"%@%u",@"Elements in Array: ",[arrayE count]]);
-    [self removeExplosions];
-    while([arrayE count]>0)
-    {
-        NSLog(@"Explosion Reloaded");
-        CCSprite* spriteE = (CCSprite*)[arrayE objectAtIndex: [arrayE count]-1];
-        [spriteE runAction:taunt];
-        
-        [self addChild:spriteE z:1 tag: ExplosionTag];
-        
-        [arrayE removeObjectAtIndex: [arrayE count]-1];
-    }
-}
-
-
--(void) reloadMenus
-{
-    
-    //Reloads the pause button
-    [self removeChild: pauseButton cleanup:YES];
-    CCLabelTTF* pauseLabel = [CCLabelTTF labelWithString:@"Pause" fontName: @"arial" fontSize:40.0f];
-    CCMenuItemLabel* pauseButtonMenuItem = [CCMenuItemLabel itemWithLabel: pauseLabel target: self selector: @selector(toPauseScreen)];
-    pauseButton = [CCMenu menuWithItems: pauseButtonMenuItem,nil];
-    pauseButton.position = ccp(screenSize.width/6, screenSize.height/3);
-    [self addChild: pauseButton z:2];
-    
-    
-    //Reloads the upgrades menu
-    
-    CCLabelTTF* repairShipLabel = [CCLabelTTF labelWithString:@"Repair: 5 Credits" fontName: @"arial" fontSize: 25.0f];
-    CCLabelTTF* upgradeAttackLabel = [CCLabelTTF labelWithString:@"Add Attack: 5 Credits" fontName: @"arial" fontSize: 25.0f];
-    CCLabelTTF* upgradeHullLabel = [CCLabelTTF labelWithString:@"Add Hull: 2 Credits" fontName: @"arial" fontSize: 25.0f];
-    CCLabelTTF* upgradeAttackSpeedLabel = [CCLabelTTF labelWithString:@"Fire Faster: 20 Credits" fontName: @"arial" fontSize: 25.0f];
-    CCMenuItemLabel *repairShipMenuItem = [CCMenuItemLabel itemWithLabel:repairShipLabel target:self selector:@selector(repairPlayerShip)];
-    
-    
-    repairShipMenuItem.tag=1;// sets the repairshipmenuitem tag as 1 to use it to retreive the item from CCMenu
-    CCMenuItemLabel *upgradeHullMenuItem = [CCMenuItemLabel itemWithLabel:upgradeHullLabel target:self selector:@selector(upgradePlayerHull)];
-    [repairShipMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 1].visible];
-    
-    
-    upgradeHullMenuItem.tag=2; //sets the upgradehullmenuitem tag to 2 to use as reference for retrieval
-    CCMenuItemLabel *upgradeAttackMenuItem = [CCMenuItemLabel itemWithLabel:upgradeAttackLabel target:self selector:@selector(upgradePlayerAttack)];
-    [upgradeHullMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 2].visible];
-    
-    
-    upgradeAttackMenuItem.tag=3; //Sets the upgradeAttackMenuItem tag to 3 to use as reference for retrieval
-    CCMenuItemLabel *upgradeAttackSpeedMenuItem = [CCMenuItemLabel itemWithLabel:upgradeAttackSpeedLabel target:self selector:@selector(upgradePlayerAttackSpeed)];
-    [upgradeAttackMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 3].visible];
-    
-    
-    upgradeAttackSpeedMenuItem.tag=4; //sets the attackspeedmenuitem tag to 4 as a reference for retrieval
-    [upgradeAttackSpeedMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 4].visible];
-    
-    
-    upgradesMenu = [CCMenu menuWithItems:repairShipMenuItem, upgradeHullMenuItem, upgradeAttackMenuItem, upgradeAttackSpeedMenuItem, nil];
-    
-    [upgradesMenu alignItemsVertically];
-    [upgradesMenu setPosition:ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
-    [self removeChildByTag:UpgradesMenuTag];
-    [self addChild: upgradesMenu z:1 tag: UpgradesMenuTag];
-
-    
-    //[[self getChildByTag:UpgradesMenuTag] setVisible: NO];
-    
-    
-    
-    CCLabelTTF* megaLaserLabel = [CCLabelTTF labelWithString:@"Mega Laser" fontName: @"arial" fontSize: 25.0f];
-    CCLabelTTF* emergencyRepairLabel = [CCLabelTTF labelWithString: @"Emergency Repair" fontName: @"arial" fontSize:25.0f];
-    CCLabelTTF* pointDefenseLabel = [CCLabelTTF labelWithString: @"Point Defenses" fontName: @"arial" fontSize:25.0f];
-    CCLabelTTF* reflectorLabel = [CCLabelTTF labelWithString: @"Reflector Shields" fontName: @"arial" fontSize: 25.0f];
-    CCMenuItemLabel *megaLaserMenuItem = [CCMenuItemLabel itemWithLabel: megaLaserLabel target:self selector: @selector(chooseMegaLaser)];
-    megaLaserMenuItem.tag=1;
-    CCMenuItemLabel *emergencyRepairMenuItem = [CCMenuItemLabel itemWithLabel: emergencyRepairLabel target: self selector: @selector(chooseEmergencyRepair)];
-    emergencyRepairMenuItem.tag=2;
-    CCMenuItemLabel * pointDefenseMenuItem = [CCMenuItemLabel itemWithLabel: pointDefenseLabel target: self selector: @selector(choosePointDefense)];
-    pointDefenseMenuItem.tag=3;
-    CCMenuItemLabel* reflectorMenuItem = [CCMenuItemLabel itemWithLabel: reflectorLabel target: self selector: @selector(chooseReflector)];
-    reflectorMenuItem.tag=4;
-    superWeaponsMenu= [CCMenu menuWithItems: megaLaserMenuItem, emergencyRepairMenuItem, pointDefenseMenuItem, reflectorMenuItem,nil];
-    [superWeaponsMenu alignItemsVertically];
-    [superWeaponsMenu setPosition: ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
-    /*
-    [megaLaserMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:1].visible];
-    [emergencyRepairMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:2].visible];
-    [pointDefenseMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:3].visible];
-    [reflectorMenuItem setVisible: [[self getChildByTag: SuperWeaponsMenuTag] getChildByTag:4].visible];
-     */
-    [superWeaponsMenu setVisible: [self getChildByTag:SuperWeaponsMenuTag].visible];
-    [self removeChildByTag: SuperWeaponsMenuTag];
-    [self addChild: superWeaponsMenu z:1 tag:SuperWeaponsMenuTag];
-
-    
-    
-}
-
-
--(void) chooseMegaLaser
-{
-    [(SpacePort*)[self getChildByTag: CurrentEntityTag] die];
-    currentSuperWeapon=1;
-    [self putAwaySuperWeaponsMenu];
-    
-}
-
--(void) choosePointDefense
-{
-    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
-    currentSuperWeapon=3;
-    [self putAwaySuperWeaponsMenu];
-
-}
-
--(void) chooseEmergencyRepair
-{
-    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
-
-    currentSuperWeapon=2;
-    [self putAwaySuperWeaponsMenu];
-
-}
-
--(void) chooseReflector
-{
-    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
-
-    currentSuperWeapon=4;
-    [self putAwaySuperWeaponsMenu];
-
-}
-
--(void) usePowerUp
-{
-    superWeaponInUse = currentSuperWeapon;
-    currentSuperWeapon=0;
-    if(superWeaponInUse==2)
-    {
-        [ship repair];
-        superWeaponInUse=0;
-    }
 }
 
 -(id) init
 {
 	if ((self = [super init]))
 	{
+        captain=nil;
         currentSuperWeapon=0;
         repairChanceEqualizer=0;
         currentEvent=nil;
+        scenarioType=-1;
         gameState=1;
 		instanceOfGameLayer = self;
         backgroundCount=0;
@@ -277,10 +127,10 @@ int repairChanceEqualizer;
         //get the rectangle that describes the edges of the screen
         screenSize = [[CCDirector sharedDirector] winSize];
 		screenRect = CGRectMake(0, 0, screenSize.width, screenSize.height);
-		shake_once = NO;
-        self.accelerometerEnabled = YES;
-        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-        [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
+		//shake_once = NO;
+        //self.accelerometerEnabled = YES;
+        //[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+        //[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
         
         currentSuperWeaponIndicator = [CCLabelTTF labelWithString:@"No Adv. Tech" fontName:@"arial" fontSize:25.0f];
         currentSuperWeaponIndicator.position = ccp(screenSize.width*2/3, screenSize.height*83/100);
@@ -348,24 +198,8 @@ int repairChanceEqualizer;
         [superWeaponsMenuTitle setPosition: ccp(screenSize.width*3/4-8, screenSize.height*3/4)];
         [self addChild: superWeaponsMenuTitle z:1 tag: SuperWeaponsMenuTitleTag];
         [[self getChildByTag: SuperWeaponsMenuTitleTag] setVisible:NO];
-        /*
-        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 1] setVisible: NO];
-        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 2] setVisible: NO];
-
-        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 3] setVisible: NO];
-
-        [[[self getChildByTag:SuperWeaponsMenuTag] getChildByTag: 4] setVisible: NO];
-        */
         
         [[self getChildByTag: SuperWeaponsMenuTag] setVisible:NO];
-        
-        //This puts a ship on screen so you know you've switched to this layer and everything is loading right
-        //**COMMENT THIS OUT WHEN YOU START WORK ON YOUR OWN GAME
-        /*
-         Entity* testEntity = [Entity createEntity];
-         [testEntity setPosition: ccp(screenSize.width/5, screenSize.height/2)];
-         [self addChild:testEntity z:1 tag:1];
-         */
         
         //Loads the Player Ship
         ship = [Ship createShip];
@@ -421,74 +255,160 @@ int repairChanceEqualizer;
         taunt = [CCSequence actions: [CCAnimate actionWithAnimation:taunting restoreOriginalFrame:NO], nil];
         
         //tell the bear to run the taunting action
-        
-        /*
-        sprite = [CCSprite spriteWithSpriteFrameName:@"explosion1.png"];
-        
-        sprite.anchorPoint = CGPointZero;
-        sprite.position = CGPointMake(0,0);
-        
-        [sprite runAction:taunt];
-        
-        [self addChild:sprite z:1];
-         */
-        /*
-         for (id key in getRoot) {
-         NSLog(@"key: %@, value: %@ \n", key, [getRoot objectForKey:key]);
-         }
-         */
-        /*
-         currentEvent =[Pirate createPirateWithHealth:3 andAttack:1 andAttackInterval:50 andPlayer:ship withBounty: 3];
-         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
-         [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-         */
-        /*
-         currentEvent = [Planet createPlanet];
-         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
-         [self addChild: currentEvent z:0 tag:CurrentEntityTag];
-         */
-        /*
-         CCSprite* coin = [CCSprite spriteWithFile:@"coins.png"];
-         [coin setPosition:ccp(screenSize.width*4/5, screenSize.height/2)];
-         [self addChild:coin z:1 tag:9001];
-         */
-        //**
-        
-        //We've provided this code so you can check to see if touch input is working.
-        //**COMMENT THIS OUT WHEN YOU START WORK ON YOUR OWN GAME
-        /*
-         verifyTouchStart = [CCLabelTTF labelWithString:@"Touch Started" fontName:@"arial" fontSize:20.0f];
-         verifyTouchAvailable = [CCLabelTTF labelWithString:@"No Taps" fontName:@"arial" fontSize:20.0f];
-         verifyTouchEnd = [CCLabelTTF labelWithString:@"Touch Ended" fontName:@"arial" fontSize:20.0f];
-         
-         verifyTouchStart.position = ccp(100,100);
-         verifyTouchAvailable.position = ccp(250,300);
-         verifyTouchEnd.position = ccp(400,100);
-         
-         
-         verifyTouchStart.visible = false;
-         verifyTouchEnd.visible = false;
-         
-         
-         [self addChild: verifyTouchStart z:1 tag: TouchStartedLabelTag];
-         [self addChild: verifyTouchAvailable z:1 tag: TouchAvailableLabelTag];
-         [self addChild: verifyTouchEnd z:1 tag: TouchEndedLabelTag];
-         
-         */
-        
+
         //This will schedule a call to the update method every frame
         [self scheduleUpdate];
 
         //this line initializes the instanceOfGameLayer variable such that it can be accessed by the sharedGameLayer method
-        
-        
-
-
     }
     
 	return self;
 }
+-(id) resume
+{
+    [self scheduleUpdate];
+    [self reloadMenus];
+    [self reloadSprites];
+    return self;
+}
+-(void) reloadSprites
+{
+    NSMutableArray* arrayE = [[NSMutableArray alloc] init];
+    while([self getChildByTag:ExplosionTag]!=nil)
+    {
+        NSLog(@"Explosion found");
+        CCSprite* explosion = (CCSprite*)[self getChildByTag:ExplosionTag];
+        [arrayE addObject:explosion];
+        [self removeChildByTag:ExplosionTag];
+    }
+    NSLog([NSString stringWithFormat:@"%@%u",@"Elements in Array: ",[arrayE count]]);
+    [self removeExplosions];
+    while([arrayE count]>0)
+    {
+        NSLog(@"Explosion Reloaded");
+        CCSprite* spriteE = (CCSprite*)[arrayE objectAtIndex: [arrayE count]-1];
+        [spriteE runAction:taunt];
+        
+        [self addChild:spriteE z:1 tag: ExplosionTag];
+        
+        [arrayE removeObjectAtIndex: [arrayE count]-1];
+    }
+}
 
+
+-(void) reloadMenus
+{
+    //Reloads the pause button
+    [self removeChild: pauseButton cleanup:YES];
+    CCLabelTTF* pauseLabel = [CCLabelTTF labelWithString:@"Pause" fontName: @"arial" fontSize:40.0f];
+    CCMenuItemLabel* pauseButtonMenuItem = [CCMenuItemLabel itemWithLabel: pauseLabel target: self selector: @selector(toPauseScreen)];
+    pauseButton = [CCMenu menuWithItems: pauseButtonMenuItem,nil];
+    pauseButton.position = ccp(screenSize.width/6, screenSize.height/3);
+    [self addChild: pauseButton z:2];
+    
+    //Reloads the upgrades menu
+    
+    CCLabelTTF* repairShipLabel = [CCLabelTTF labelWithString:@"Repair: 5 Credits" fontName: @"arial" fontSize: 25.0f];
+    CCLabelTTF* upgradeAttackLabel = [CCLabelTTF labelWithString:@"Add Attack: 5 Credits" fontName: @"arial" fontSize: 25.0f];
+    CCLabelTTF* upgradeHullLabel = [CCLabelTTF labelWithString:@"Add Hull: 2 Credits" fontName: @"arial" fontSize: 25.0f];
+    CCLabelTTF* upgradeAttackSpeedLabel = [CCLabelTTF labelWithString:@"Fire Faster: 20 Credits" fontName: @"arial" fontSize: 25.0f];
+    CCMenuItemLabel *repairShipMenuItem = [CCMenuItemLabel itemWithLabel:repairShipLabel target:self selector:@selector(repairPlayerShip)];
+    
+    
+    repairShipMenuItem.tag=1;// sets the repairshipmenuitem tag as 1 to use it to retreive the item from CCMenu
+    CCMenuItemLabel *upgradeHullMenuItem = [CCMenuItemLabel itemWithLabel:upgradeHullLabel target:self selector:@selector(upgradePlayerHull)];
+    [repairShipMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 1].visible];
+    
+    
+    upgradeHullMenuItem.tag=2; //sets the upgradehullmenuitem tag to 2 to use as reference for retrieval
+    CCMenuItemLabel *upgradeAttackMenuItem = [CCMenuItemLabel itemWithLabel:upgradeAttackLabel target:self selector:@selector(upgradePlayerAttack)];
+    [upgradeHullMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 2].visible];
+    
+    
+    upgradeAttackMenuItem.tag=3; //Sets the upgradeAttackMenuItem tag to 3 to use as reference for retrieval
+    CCMenuItemLabel *upgradeAttackSpeedMenuItem = [CCMenuItemLabel itemWithLabel:upgradeAttackSpeedLabel target:self selector:@selector(upgradePlayerAttackSpeed)];
+    [upgradeAttackMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 3].visible];
+    
+    
+    upgradeAttackSpeedMenuItem.tag=4; //sets the attackspeedmenuitem tag to 4 as a reference for retrieval
+    [upgradeAttackSpeedMenuItem setVisible:[[self getChildByTag:UpgradesMenuTag] getChildByTag: 4].visible];
+    
+    
+    upgradesMenu = [CCMenu menuWithItems:repairShipMenuItem, upgradeHullMenuItem, upgradeAttackMenuItem, upgradeAttackSpeedMenuItem, nil];
+    
+    [upgradesMenu alignItemsVertically];
+    [upgradesMenu setPosition:ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+    [self removeChildByTag:UpgradesMenuTag];
+    [self addChild: upgradesMenu z:1 tag: UpgradesMenuTag];
+    
+    CCLabelTTF* megaLaserLabel = [CCLabelTTF labelWithString:@"Mega Laser" fontName: @"arial" fontSize: 25.0f];
+    CCLabelTTF* emergencyRepairLabel = [CCLabelTTF labelWithString: @"Emergency Repair" fontName: @"arial" fontSize:25.0f];
+    CCLabelTTF* pointDefenseLabel = [CCLabelTTF labelWithString: @"Point Defenses" fontName: @"arial" fontSize:25.0f];
+    CCLabelTTF* reflectorLabel = [CCLabelTTF labelWithString: @"Reflector Shields" fontName: @"arial" fontSize: 25.0f];
+    CCMenuItemLabel *megaLaserMenuItem = [CCMenuItemLabel itemWithLabel: megaLaserLabel target:self selector: @selector(chooseMegaLaser)];
+    megaLaserMenuItem.tag=1;
+    CCMenuItemLabel *emergencyRepairMenuItem = [CCMenuItemLabel itemWithLabel: emergencyRepairLabel target: self selector: @selector(chooseEmergencyRepair)];
+    emergencyRepairMenuItem.tag=2;
+    CCMenuItemLabel * pointDefenseMenuItem = [CCMenuItemLabel itemWithLabel: pointDefenseLabel target: self selector: @selector(choosePointDefense)];
+    pointDefenseMenuItem.tag=3;
+    CCMenuItemLabel* reflectorMenuItem = [CCMenuItemLabel itemWithLabel: reflectorLabel target: self selector: @selector(chooseReflector)];
+    reflectorMenuItem.tag=4;
+    superWeaponsMenu= [CCMenu menuWithItems: megaLaserMenuItem, emergencyRepairMenuItem, pointDefenseMenuItem, reflectorMenuItem,nil];
+    [superWeaponsMenu alignItemsVertically];
+    [superWeaponsMenu setPosition: ccp(screenSize.width*3/4-8,screenSize.height/2-10)];
+    [superWeaponsMenu setVisible: [self getChildByTag:SuperWeaponsMenuTag].visible];
+    [self removeChildByTag: SuperWeaponsMenuTag];
+    [self addChild: superWeaponsMenu z:1 tag:SuperWeaponsMenuTag];
+    
+    
+    
+}
+
+-(void) chooseMegaLaser
+{
+    [(SpacePort*)[self getChildByTag: CurrentEntityTag] die];
+    currentSuperWeapon=1;
+    [self putAwaySuperWeaponsMenu];
+    
+}
+
+-(void) choosePointDefense
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+    currentSuperWeapon=3;
+    [self putAwaySuperWeaponsMenu];
+    
+}
+
+-(void) chooseEmergencyRepair
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+    
+    currentSuperWeapon=2;
+    [self putAwaySuperWeaponsMenu];
+    
+}
+
+-(void) chooseReflector
+{
+    [(SpacePort*) [self getChildByTag: CurrentEntityTag] die];
+    
+    currentSuperWeapon=4;
+    [self putAwaySuperWeaponsMenu];
+    
+}
+
+-(void) usePowerUp
+{
+    superWeaponInUse = currentSuperWeapon;
+    currentSuperWeapon=0;
+    if(superWeaponInUse==2)
+    {
+        [ship repair];
+        superWeaponInUse=0;
+    }
+}
+/*
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
         float THRESHOLD = 2;
@@ -509,7 +429,7 @@ int repairChanceEqualizer;
     }
     
 }
-
+*/
 
 -(void) update: (ccTime) dt
 {
@@ -594,8 +514,9 @@ int repairChanceEqualizer;
         NSLog(@"Loading Tutorial");
         [self loadTutorial];
     }
-    else if(gameState==1)[self loadNextIncrementalEvent];
+    else [self loadNextIncrementalEvent];
 }
+
 
 -(void) loadTutorial
 {
@@ -693,182 +614,7 @@ int repairChanceEqualizer;
     }
     eventNumber++;
 }
-/*
--(void) loadTutorial
-{
-    //NSLog([NSString stringWithFormat:@"%@%u", @"EventNumber = ",eventNumber]);
-    switch (eventNumber) {
-        case 1:
-            currentEvent = [Interlude createInterludeWithMessage:@" Welcome to the Tutorial!"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 2:
-            currentEvent = [Interlude createInterludeWithMessage:@"<==That is your ship!"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 3:
-            currentEvent = [Interlude createInterludeWithMessage:@"You can't directly control the ship :("];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 4:
-            currentEvent = [Interlude createInterludeWithMessage:@"But the ship will automatically fight enemies."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 5:
-            currentEvent = [Interlude createInterludeWithMessage:@"Here comes an enemy! ==>"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 6:
-            currentEvent =[Pirate createPirateWithHealth:10 andAttack:1 andAttackInterval:50 andPlayer:ship withBounty: 3];
-            [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 7:   
-            currentEvent = [Interlude createInterludeWithMessage:@"Enemies drop loot"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 8:
-            currentEvent = [Interlude createInterludeWithMessage:@"Tap or drag your finger over the loot to collect it"];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 9:
-            currentEvent = [Interlude createInterludeWithMessage:@"Over time these enemies will get stronger."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 10:
-            currentEvent = [Interlude createInterludeWithMessage:@"But you can upgrade your ship at planets."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 11:
-            currentEvent = [Interlude createInterludeWithMessage:@"You won't stay too long at planets though."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 12:
-            currentEvent = [Interlude createInterludeWithMessage:@"So shop quickly!"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 13:
-            currentEvent = [Interlude createInterludeWithMessage:@"Planet ahead! ==>"];
-            [currentEvent setPosition: ccp(screenSize.width*1/7,0)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 14:
-            currentEvent = [Planet createPlanet];
-            [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
-            [self addChild: currentEvent z:0 tag:CurrentEntityTag];
-            break;
-        case 15:
-            currentEvent = [Interlude createInterludeWithMessage:@"Planets won't always have everything though."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 16:
-            currentEvent = [Interlude createInterludeWithMessage:@"And some may not even be inhabited!"];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 17:
-            currentEvent = [Interlude createInterludeWithMessage:@"So whether you spend or save is up to you."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 18:
-            currentEvent = [Interlude createInterludeWithMessage:@"Next Segment: Upgrades and Stats"];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 19:
-            currentEvent = [Interlude createInterludeWithMessage:@"You may notice the indicators up above."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 20:
-            currentEvent = [Interlude createInterludeWithMessage:@"The one on the left shows your hull"];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 21:
-            currentEvent = [Interlude createInterludeWithMessage:@"The number to the left of the / is your remaining hull."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 22:
-            currentEvent = [Interlude createInterludeWithMessage:@"The number to the right of the / is your maximum hull."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 23:
-            currentEvent = [Interlude createInterludeWithMessage:@"You can repair your remaining hull at planets."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 24:
-            break;
-        case 25:
-            currentEvent = [Interlude createInterludeWithMessage:@"Next is the attack power indicator."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 26:
-            currentEvent = [Interlude createInterludeWithMessage:@"It shows how much damage your ship does per attack."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 27:
-            currentEvent = [Interlude createInterludeWithMessage:@"The last number on the right shows your attack speed."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 28:
-            currentEvent = [Interlude createInterludeWithMessage:@"That's how many frames between the ship's attacks."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 29:
-            currentEvent = [Interlude createInterludeWithMessage:@"It can't be upgraded below 1 though :("];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 30:
-            currentEvent = [Interlude createInterludeWithMessage:@"That would mean attack infinite times per frame."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 31:
-            currentEvent = [Interlude createInterludeWithMessage:@"Infinite attacks per frame would destroy space-time."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 32:
-            currentEvent = [Interlude createInterludeWithMessage:@"That would be bad."];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        case 33:
-            currentEvent = [Interlude createInterludeWithMessage:@"Thanks for going through the tutorial!"];
-            [currentEvent setPosition: ccp(0,-screenSize.height*1/4)];
-            [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            break;
-        default:
-            [self toMainMenu];
-            break;
-    }
 
-    
-    eventNumber++;
-}
- */
 -(void) loadNextIncrementalEvent
 {
     NSLog(@"Loading Next IncrementalEvent");
@@ -888,10 +634,10 @@ int repairChanceEqualizer;
         //NSLog([ NSString stringWithFormat:@"%@%u",@"AttackInterval: ",attackInterval]);
         if(eventCycle%10==0 && eventCycle!=0)
         {
-            currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*40) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
+            currentEvent = [PirateKing createPirateKingWithHealth:3*(100+eventCycle*30) andAttack:15+(eventCycle*5/3)+ [ship hull]/20 andAttackInterval:attackInterval andPlayer:ship withBounty:12];
             [currentEvent setPosition:ccp(screenSize.width+64,screenSize.height/2)];
             [self addChild: currentEvent z:1 tag:CurrentEntityTag];
-            eventNumber=8;
+            eventNumber=7;
             superWeaponInUse=currentSuperWeapon;
         }
         else{
@@ -917,24 +663,29 @@ int repairChanceEqualizer;
         currentEvent = [Planet createPlanet];
         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
         [self addChild: currentEvent z:0 tag:CurrentEntityTag];
-        if(eventCycle==9)
+        if(eventCycle==9 && currentSuperWeapon==0)
         {
             eventNumber=8;
+        }
+        else
+        {
+            eventNumber=-2;
         }
     }
     else if(eventNumber==9)
     {
         currentSuperWeapon=0;
         superWeaponInUse=0;
-        NSLog(@"Loading Port");
+        //NSLog(@"Loading Port");
         currentEvent = [SpacePort createSpacePort];
         [currentEvent setPosition:ccp(screenSize.width,screenSize.height/2)];
         [self addChild: currentEvent z:0 tag:CurrentEntityTag];
+        eventNumber=5;
 
     }
     eventNumber++;
-    NSLog([NSString stringWithFormat:@"%@%u", @"Event: ", eventNumber]);
-    if(eventNumber>7 && eventNumber!=9)
+    //NSLog([NSString stringWithFormat:@"%@%u", @"Event: ", eventNumber]);
+    if(eventNumber==-1)
     {
         eventNumber=1;
         eventCycle++;

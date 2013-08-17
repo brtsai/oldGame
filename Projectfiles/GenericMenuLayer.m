@@ -31,7 +31,7 @@
         CCMenu *menu = [CCMenu menuWithItems:item, tutorialMenuItem, highScoresLabel, nil];
         [menu alignItemsVerticallyWithPadding:5.0f];
         
-    
+        
         [self addChild:menu];
         
     }
